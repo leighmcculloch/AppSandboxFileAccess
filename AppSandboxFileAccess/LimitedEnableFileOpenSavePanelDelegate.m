@@ -43,6 +43,7 @@
 @interface LimitedEnableFileOpenSavePanelDelegate ()
 
 @property (retain) NSURL *url;
+@property (retain) NSArray *urlPath;
 
 @end
 
@@ -52,6 +53,7 @@
 	self = [super init];
 	if (self) {
 		self.url = fileUrl;
+		self.urlPath = [self.url pathComponents];
 	}
 	return self;
 }
@@ -59,11 +61,25 @@
 #pragma mark -- NSOpenSavePanelDelegate
 
 - (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url {
-	// Allow paths on the open panel to be enabled for selection, if they are the URL, or if they are
-	// a parent path to the URL. The use of of 'relativeString' instead of 'path' is important here
-	// because relativeString always suffixes paths with a slash (/) and path does not. The slash
-	// ensures we match on full folder names.
-	return [self.url.relativeString hasPrefix:url.relativeString];
+	NSArray *urlPath = [url pathComponents];
+	
+	// if the url passed in has more components, it could not be a parent path or a exact same path
+	if (urlPath.count > self.urlPath.count) {
+		return NO;
+	}
+	
+	// check that each path component in url, is the same as each corresponding component in self.url
+	for (int i = 0; i < urlPath.count; ++i) {
+		NSString *comp1 = urlPath[i];
+		NSString *comp2 = self.urlPath[i];
+		// not the same, therefore url is not a parent or exact match to self.url
+		if (![comp1 isEqualToString:comp2]) {
+			return NO;
+		}
+	}
+	
+	// there were no mismatches (or no components meaning url is root)
+	return YES;
 }
 
 @end
