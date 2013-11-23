@@ -82,7 +82,7 @@
 		[openPanel setShowsHiddenFiles:NO];
 		[openPanel setShowsTagField:NO];
 		[openPanel setExtensionHidden:NO];
-		[openPanel setDirectoryURL:[url URLByDeletingLastPathComponent]];
+		[openPanel setDirectoryURL:url];
 		[openPanel setDelegate:openPanelDelegate];
 		[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 		NSInteger openPanelButtonPressed = [openPanel runModal];
