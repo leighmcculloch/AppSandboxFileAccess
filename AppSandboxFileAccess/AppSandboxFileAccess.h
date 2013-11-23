@@ -52,6 +52,12 @@ typedef void (^AppSandboxFileAccessBlock)();
  */
 @property (retain) NSString *prompt;
 
+/*! Create the object with the default values. */
++ (AppSandboxFileAccess *)fileAccess;
+
+/*! Initialise the object with the default values. */
+- (id)init;
+
 /*! Use this function to access a file URL to either read or write in an application restricted by the App Sandbox.
  This function will ask the user for permission if necessary using a well formed NSOpenPanel. The user will
  have the option of approving access to the URL you specify, or a parent path for that URL. If persist is YES
