@@ -10,11 +10,6 @@
 		201DCD311840BDE600B43456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD301840BDE600B43456 /* Cocoa.framework */; };
 		201DCD3B1840BDE600B43456 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 201DCD391840BDE600B43456 /* InfoPlist.strings */; };
 		201DCD3F1840BDE600B43456 /* AppSandboxFileAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */; };
-		201DCD461840BDE600B43456 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD451840BDE600B43456 /* XCTest.framework */; };
-		201DCD471840BDE600B43456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD301840BDE600B43456 /* Cocoa.framework */; };
-		201DCD4A1840BDE600B43456 /* AppSandboxFileAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */; };
-		201DCD501840BDE600B43456 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 201DCD4E1840BDE600B43456 /* InfoPlist.strings */; };
-		201DCD521840BDE600B43456 /* AppSandboxFileAccessTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD511840BDE600B43456 /* AppSandboxFileAccessTests.m */; };
 		201DCD5D1840BE2D00B43456 /* Persist.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD5B1840BE2D00B43456 /* Persist.h */; };
 		201DCD5E1840BE2D00B43456 /* Persist.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD5C1840BE2D00B43456 /* Persist.m */; };
 		201DCD611840C48200B43456 /* NSData+SHA256.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD5F1840C48200B43456 /* NSData+SHA256.h */; };
@@ -27,16 +22,6 @@
 		201DCD701840D21300B43456 /* NSString+SHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD6E1840D21300B43456 /* NSString+SHA256.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		201DCD481840BDE600B43456 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 201DCD241840BDE600B43456 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 201DCD2C1840BDE600B43456;
-			remoteInfo = AppSandboxFileAccess;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppSandboxFileAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		201DCD301840BDE600B43456 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -48,11 +33,7 @@
 		201DCD3C1840BDE600B43456 /* AppSandboxFileAccess-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppSandboxFileAccess-Prefix.pch"; sourceTree = "<group>"; };
 		201DCD3D1840BDE600B43456 /* AppSandboxFileAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccess.h; sourceTree = "<group>"; };
 		201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccess.m; sourceTree = "<group>"; };
-		201DCD441840BDE600B43456 /* AppSandboxFileAccessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppSandboxFileAccessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		201DCD451840BDE600B43456 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		201DCD4D1840BDE600B43456 /* AppSandboxFileAccessTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppSandboxFileAccessTests-Info.plist"; sourceTree = "<group>"; };
-		201DCD4F1840BDE600B43456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		201DCD511840BDE600B43456 /* AppSandboxFileAccessTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessTests.m; sourceTree = "<group>"; };
 		201DCD5B1840BE2D00B43456 /* Persist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Persist.h; sourceTree = "<group>"; };
 		201DCD5C1840BE2D00B43456 /* Persist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Persist.m; sourceTree = "<group>"; };
 		201DCD5F1840C48200B43456 /* NSData+SHA256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA256.h"; sourceTree = "<group>"; };
@@ -74,16 +55,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		201DCD411840BDE600B43456 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				201DCD471840BDE600B43456 /* Cocoa.framework in Frameworks */,
-				201DCD461840BDE600B43456 /* XCTest.framework in Frameworks */,
-				201DCD4A1840BDE600B43456 /* AppSandboxFileAccess.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -91,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				201DCD361840BDE600B43456 /* AppSandboxFileAccess */,
-				201DCD4B1840BDE600B43456 /* AppSandboxFileAccessTests */,
 				201DCD2F1840BDE600B43456 /* Frameworks */,
 				201DCD2E1840BDE600B43456 /* Products */,
 			);
@@ -101,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */,
-				201DCD441840BDE600B43456 /* AppSandboxFileAccessTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,24 +125,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		201DCD4B1840BDE600B43456 /* AppSandboxFileAccessTests */ = {
-			isa = PBXGroup;
-			children = (
-				201DCD511840BDE600B43456 /* AppSandboxFileAccessTests.m */,
-				201DCD4C1840BDE600B43456 /* Supporting Files */,
-			);
-			path = AppSandboxFileAccessTests;
-			sourceTree = "<group>";
-		};
-		201DCD4C1840BDE600B43456 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				201DCD4D1840BDE600B43456 /* AppSandboxFileAccessTests-Info.plist */,
-				201DCD4E1840BDE600B43456 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -210,24 +161,6 @@
 			productReference = 201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		201DCD431840BDE600B43456 /* AppSandboxFileAccessTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 201DCD581840BDE600B43456 /* Build configuration list for PBXNativeTarget "AppSandboxFileAccessTests" */;
-			buildPhases = (
-				201DCD401840BDE600B43456 /* Sources */,
-				201DCD411840BDE600B43456 /* Frameworks */,
-				201DCD421840BDE600B43456 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				201DCD491840BDE600B43456 /* PBXTargetDependency */,
-			);
-			name = AppSandboxFileAccessTests;
-			productName = AppSandboxFileAccessTests;
-			productReference = 201DCD441840BDE600B43456 /* AppSandboxFileAccessTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -236,11 +169,6 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Leigh McCulloch";
-				TargetAttributes = {
-					201DCD431840BDE600B43456 = {
-						TestTargetID = 201DCD2C1840BDE600B43456;
-					};
-				};
 			};
 			buildConfigurationList = 201DCD271840BDE600B43456 /* Build configuration list for PBXProject "AppSandboxFileAccess" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -255,7 +183,6 @@
 			projectRoot = "";
 			targets = (
 				201DCD2C1840BDE600B43456 /* AppSandboxFileAccess */,
-				201DCD431840BDE600B43456 /* AppSandboxFileAccessTests */,
 			);
 		};
 /* End PBXProject section */
@@ -266,14 +193,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				201DCD3B1840BDE600B43456 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		201DCD421840BDE600B43456 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				201DCD501840BDE600B43456 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,37 +212,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		201DCD401840BDE600B43456 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				201DCD521840BDE600B43456 /* AppSandboxFileAccessTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		201DCD491840BDE600B43456 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 201DCD2C1840BDE600B43456 /* AppSandboxFileAccess */;
-			targetProxy = 201DCD481840BDE600B43456 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		201DCD391840BDE600B43456 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				201DCD3A1840BDE600B43456 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		201DCD4E1840BDE600B43456 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				201DCD4F1840BDE600B43456 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -429,46 +324,6 @@
 			};
 			name = Release;
 		};
-		201DCD591840BDE600B43456 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AppSandboxFileAccess.framework/Versions/A/AppSandboxFileAccess";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "AppSandboxFileAccessTests/AppSandboxFileAccessTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		201DCD5A1840BDE600B43456 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AppSandboxFileAccess.framework/Versions/A/AppSandboxFileAccess";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch";
-				INFOPLIST_FILE = "AppSandboxFileAccessTests/AppSandboxFileAccessTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -488,14 +343,7 @@
 				201DCD571840BDE600B43456 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		201DCD581840BDE600B43456 /* Build configuration list for PBXNativeTarget "AppSandboxFileAccessTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				201DCD591840BDE600B43456 /* Debug */,
-				201DCD5A1840BDE600B43456 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
