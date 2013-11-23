@@ -17,6 +17,10 @@ How to Use
 
 Include the source .h and .m files into your own project. If you'd like to keep up-to-date with the latest updates, add this project as a submodule to your application.
 
+In Xcode click on your project file, then the Capabilities tab. Turn on App Sandbox and change 'User Selected File' to 'Read/Write' or 'Read Only', whichever you need. In your project Xcode will have created a .entitlements file. Open this and you should see the below. If you plan on persisting permissions you'll need to add the third entitlement.
+
+![](screenshot-2.png)
+
 In your application, whenever you need to read or write a file, wrap the code accessing the file wrap like the following. The following example will get permission to access the parent directory of a file the application already knows about.
 
 ```
