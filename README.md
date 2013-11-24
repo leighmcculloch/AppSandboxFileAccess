@@ -38,13 +38,13 @@ NSString *file = @"/Users/Wookie/AwesomeRecipe.txt";
 
 // persist permission to access the file the user introduced to the app, so we can always 
 // access it and then the AppSandboxFileAccess class won't prompt for it if you wrap access to it
-[fileAccess persistPermission:[NSURL fileURLWithPath:file]];
+[fileAccess persistPermissionPath:file];
 
 // get the parent directory for the file
 NSString *parentDirectory = [file stringByDeletingLastPathComponent];
 				
 // get access to the parent directory
-BOOL accessAllowed = [fileAccess accessFile:[NSURL fileURLWithPath:parentDirectory] withBlock:^{
+BOOL accessAllowed = [fileAccess accessFilePath:parentDirectory withBlock:^{
 
   // write or read files in that directory
   // e.g. write AwesomeRecipe.txt.gz to the same directory as the txt file

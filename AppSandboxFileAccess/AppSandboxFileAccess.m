@@ -105,7 +105,11 @@
 	return allowedUrl;
 }
 
-- (void)persistPermission:(NSURL *)url {
+- (void)persistPermissionPath:(NSString *)path {
+	[self persistPermissionURL:[NSURL fileURLWithPath:path]];
+}
+
+- (void)persistPermissionURL:(NSURL *)url {
 	// store the sandbox permissions
 	NSData *bookmarkData = [url bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
 	if (bookmarkData) {
@@ -113,12 +117,16 @@
 	}
 }
 
-- (BOOL)accessFile:(NSURL *)url withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist {
-	
+- (BOOL)accessFilePath:(NSString *)path withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist {
+	return [self accessFileURL:[NSURL fileURLWithPath:path] withBlock:block persistPermission:persist];
+}
+
+- (BOOL)accessFileURL:(NSURL *)fileUrl withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist {
+
 	NSURL *allowedUrl = nil;
 	
 	// lookup bookmark data for this url, this will automatically load bookmark data for a parent path if we have it
-	NSData *bookmarkData = [AppSandboxFileAccessPersist bookmarkDataForURL:url];
+	NSData *bookmarkData = [AppSandboxFileAccessPersist bookmarkDataForURL:fileUrl];
 	if (bookmarkData) {
 		// resolve the bookmark data into an NSURL object that will allow us to use the file
 		BOOL bookmarkDataIsStale;
@@ -131,7 +139,7 @@
 	
 	// if allowed url is nil, we need to ask the user for permission
 	if (!allowedUrl) {
-		allowedUrl = [self askPermissionForUrl:url];
+		allowedUrl = [self askPermissionForUrl:fileUrl];
 		if (!allowedUrl) {
 			// if the user did not give permission, exit out here
 			return NO;
@@ -140,7 +148,7 @@
 	
 	// if we have no bookmark data, we need to create it, this may be because our bookmark data was stale, or this is the first time being given permission
 	if (persist && !bookmarkData) {
-		[self persistPermission:allowedUrl];
+		[self persistPermissionURL:allowedUrl];
 	}
 	
 	// execute the block with the file access permissions
