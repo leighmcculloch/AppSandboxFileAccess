@@ -40,10 +40,9 @@ NSString *file = @"/Users/Wookie/AwesomeRecipe.txt";
 
 // get the parent directory for the file
 NSString *parentDirectory = [file stringByDeletingLastPathComponent];
-NSURL *parentUrl = [NSURL fileURLWithPath:parentDirectory];
 				
 // get access to the parent directory
-BOOL accessAllowed = [fileAccess accessFile:[NSURL fileURLWithPath:file] withBlock:^{
+BOOL accessAllowed = [fileAccess accessFile:[NSURL fileURLWithPath:parentDirectory] withBlock:^{
 
   // write or read files in that directory
   // e.g. write AwesomeRecipe.txt.gz to the same directory as the txt file

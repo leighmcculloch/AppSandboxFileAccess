@@ -69,6 +69,17 @@
 	// or file giving permission to the file requested can be selected
 	LimitedEnableFileOpenSavePanelDelegate *openPanelDelegate = [[LimitedEnableFileOpenSavePanelDelegate alloc] initWithFileURL:url];
 	
+	// check that the url exists, if it doesn't, find the parent path of the url that does exist and ask permission for that
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSString *path = [url path];
+	while (path.length > 1) { // give up when only '/' is left in the path or if we get to a path that exists
+		if ([fileManager fileExistsAtPath:path isDirectory:NULL]) {
+			break;
+		}
+		path = [path stringByDeletingLastPathComponent];
+	}
+	url = [NSURL fileURLWithPath:path];
+	
 	// display the open panel
 	dispatch_sync(dispatch_get_main_queue(), ^{
 		NSOpenPanel *openPanel = [NSOpenPanel openPanel];
