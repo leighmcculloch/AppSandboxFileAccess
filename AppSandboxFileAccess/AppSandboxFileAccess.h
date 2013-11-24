@@ -39,55 +39,60 @@ typedef void (^AppSandboxFileAccessBlock)();
 
 @interface AppSandboxFileAccess : NSObject
 
-/*! The title of the NSOpenPanel displayed when asking permission to access a file.
+/*! @brief The title of the NSOpenPanel displayed when asking permission to access a file.
  Default: "Allow Access"
  */
 @property (retain) NSString *title;
-/*! The message contained on the the NSOpenPanel displayed when asking permission to access a file.
+/*! @brief The message contained on the the NSOpenPanel displayed when asking permission to access a file.
  Default: "[Application Name] needs to access this path to continue. Click Allow to continue."
  */
 @property (retain) NSString *message;
-/*! The prompt button on the the NSOpenPanel displayed when asking permission to access a file. 
+/*! @brief The prompt button on the the NSOpenPanel displayed when asking permission to access a file. 
  Default: "Allow"
  */
 @property (retain) NSString *prompt;
 
-/*! Create the object with the default values. */
+/*! @brief Create the object with the default values. */
 + (AppSandboxFileAccess *)fileAccess;
 
-/*! Initialise the object with the default values. */
+/*! @brief Initialise the object with the default values. */
 - (id)init;
 
-/*! Use this function to access a file URL to either read or write in an application restricted by the App Sandbox.
+/*! @brief Access a file URL to read or write, automatically gaining permission from the user with NSOpenPanel if required
+ and using persisted permissions if possible.
+ 
+ @discussion Use this function to access a file URL to either read or write in an application restricted by the App Sandbox.
  This function will ask the user for permission if necessary using a well formed NSOpenPanel. The user will
  have the option of approving access to the URL you specify, or a parent path for that URL. If persist is YES
  the permission will be stored as a bookmark in NSUserDefaults and further calls to this function will
  load the saved permission and not ask for permission again.
  
- If the file URL does not exist, it's parent directory will be asked for permission instead, since permission
+ @discussion If the file URL does not exist, it's parent directory will be asked for permission instead, since permission
  to the directory will be required to write the file. If the parent directory doesn't exist, it will ask for 
  permission of whatever part of the parent path exists.
  
- Note: If the caller has permission to access a file because it was dropped onto the application or introduced
+ @discussion Note: If the caller has permission to access a file because it was dropped onto the application or introduced
  to the application in some other way, this function will not be aware of that permission and still prompt
  the user. To prevent this, use the persistPermission function to persist a permission you've been given
  whenever a user introduces a file to the application. E.g. when dropping a file onto the application window
  or dock or when using an NSOpenPanel.
  
- \param url A file URL, either a file or folder, that the caller needs access to.
- \param block The block that will be given access to the file or folder.
- \param persist If YES will save the permission for future calls.
- \return YES if permission was granted or already available, NO otherwise.
+ @param url A file URL, either a file or folder, that the caller needs access to.
+ @param block The block that will be given access to the file or folder.
+ @param persist If YES will save the permission for future calls.
+ @return YES if permission was granted or already available, NO otherwise.
  */
 - (BOOL)accessFile:(NSURL *)url withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist;
 
-/*! Use this function to persist permission of a URL that has already been granted when a user introduced
+/*! @brief Persist a security bookmark for the given URL. The calling application must already have permission.
+ 
+ @discussion Use this function to persist permission of a URL that has already been granted when a user introduced
  a file to the calling application. E.g. by dropping the file onto the application window, or dock icon, 
  or when using an NSOpenPanel.
  
  Note: If the calling application does not have access to this file, this call will do nothing.
  
- \param url The URL with permission that will be persisted.
+ @param url The URL with permission that will be persisted.
  */
 - (void)persistPermission:(NSURL *)url;
 
