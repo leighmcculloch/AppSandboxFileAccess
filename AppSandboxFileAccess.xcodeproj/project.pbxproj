@@ -13,7 +13,7 @@
 		201DCD5E1840BE2D00B43456 /* Persist.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD5C1840BE2D00B43456 /* Persist.m */; };
 		201DCD661840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD651840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m */; };
 		201DCD681840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD671840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h */; };
-		20965A2E1841C97B00389787 /* AppSandboxFileAccess-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 20965A2D1841C97B00389787 /* AppSandboxFileAccess-Prefix.pch */; };
+		20965A331841CAB200389787 /* AppSandboxFileAccess-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 20965A311841CAB200389787 /* AppSandboxFileAccess-Prefix.pch */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,14 +22,14 @@
 		201DCD331840BDE600B43456 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		201DCD341840BDE600B43456 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		201DCD351840BDE600B43456 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		201DCD381840BDE600B43456 /* AppSandboxFileAccess-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppSandboxFileAccess-Info.plist"; sourceTree = "<group>"; };
 		201DCD3D1840BDE600B43456 /* AppSandboxFileAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccess.h; sourceTree = "<group>"; };
 		201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccess.m; sourceTree = "<group>"; };
 		201DCD5B1840BE2D00B43456 /* Persist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Persist.h; sourceTree = "<group>"; };
 		201DCD5C1840BE2D00B43456 /* Persist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Persist.m; sourceTree = "<group>"; };
 		201DCD651840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedEnableFileOpenSavePanelDelegate.m; sourceTree = "<group>"; };
 		201DCD671840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedEnableFileOpenSavePanelDelegate.h; sourceTree = "<group>"; };
-		20965A2D1841C97B00389787 /* AppSandboxFileAccess-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppSandboxFileAccess-Prefix.pch"; sourceTree = "<group>"; };
+		20965A301841CAB200389787 /* AppSandboxFileAccess-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppSandboxFileAccess-Info.plist"; sourceTree = "<group>"; };
+		20965A311841CAB200389787 /* AppSandboxFileAccess-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppSandboxFileAccess-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				201DCD361840BDE600B43456 /* AppSandboxFileAccess */,
+				20965A2F1841CA9D00389787 /* AppSandboxFileAccess Supporting Files */,
 				201DCD2F1840BDE600B43456 /* Frameworks */,
 				201DCD2E1840BDE600B43456 /* Products */,
 			);
@@ -89,18 +90,17 @@
 				201DCD5C1840BE2D00B43456 /* Persist.m */,
 				201DCD671840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h */,
 				201DCD651840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m */,
-				201DCD371840BDE600B43456 /* Supporting Files */,
 			);
 			path = AppSandboxFileAccess;
 			sourceTree = "<group>";
 		};
-		201DCD371840BDE600B43456 /* Supporting Files */ = {
+		20965A2F1841CA9D00389787 /* AppSandboxFileAccess Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				201DCD381840BDE600B43456 /* AppSandboxFileAccess-Info.plist */,
-				20965A2D1841C97B00389787 /* AppSandboxFileAccess-Prefix.pch */,
+				20965A301841CAB200389787 /* AppSandboxFileAccess-Info.plist */,
+				20965A311841CAB200389787 /* AppSandboxFileAccess-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			path = "AppSandboxFileAccess Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,7 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				201DCD5D1840BE2D00B43456 /* Persist.h in Headers */,
-				20965A2E1841C97B00389787 /* AppSandboxFileAccess-Prefix.pch in Headers */,
+				20965A331841CAB200389787 /* AppSandboxFileAccess-Prefix.pch in Headers */,
 				201DCD681840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,8 +265,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch";
-				INFOPLIST_FILE = "AppSandboxFileAccess/AppSandboxFileAccess-Info.plist";
+				GCC_PREFIX_HEADER = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Prefix.pch";
+				INFOPLIST_FILE = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -280,8 +280,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch";
-				INFOPLIST_FILE = "AppSandboxFileAccess/AppSandboxFileAccess-Info.plist";
+				GCC_PREFIX_HEADER = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Prefix.pch";
+				INFOPLIST_FILE = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
