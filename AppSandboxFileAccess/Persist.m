@@ -34,13 +34,12 @@
 //
 
 #import "Persist.h"
-#import "NSString+SHA256.h"
 
 @implementation Persist
 
 + (NSString *)keyForBookmarkDataForURL:(NSURL *)url {
 	NSString *urlStr = [url absoluteString];
-	return [NSString stringWithFormat:@"bd_%1$@", [urlStr sha256Hex]];
+	return [NSString stringWithFormat:@"bd_%1$@", urlStr];
 }
 
 + (NSData *)bookmarkDataForURL:(NSURL *)url {

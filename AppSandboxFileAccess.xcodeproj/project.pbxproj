@@ -12,14 +12,8 @@
 		201DCD3F1840BDE600B43456 /* AppSandboxFileAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */; };
 		201DCD5D1840BE2D00B43456 /* Persist.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD5B1840BE2D00B43456 /* Persist.h */; };
 		201DCD5E1840BE2D00B43456 /* Persist.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD5C1840BE2D00B43456 /* Persist.m */; };
-		201DCD611840C48200B43456 /* NSData+SHA256.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD5F1840C48200B43456 /* NSData+SHA256.h */; };
-		201DCD621840C48200B43456 /* NSData+SHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD601840C48200B43456 /* NSData+SHA256.m */; };
 		201DCD661840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD651840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m */; };
 		201DCD681840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD671840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h */; };
-		201DCD6B1840CC2D00B43456 /* NSData+HexString.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD691840CC2D00B43456 /* NSData+HexString.h */; };
-		201DCD6C1840CC2D00B43456 /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD6A1840CC2D00B43456 /* NSData+HexString.m */; };
-		201DCD6F1840D21300B43456 /* NSString+SHA256.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD6D1840D21300B43456 /* NSString+SHA256.h */; };
-		201DCD701840D21300B43456 /* NSString+SHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD6E1840D21300B43456 /* NSString+SHA256.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,14 +30,8 @@
 		201DCD451840BDE600B43456 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		201DCD5B1840BE2D00B43456 /* Persist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Persist.h; sourceTree = "<group>"; };
 		201DCD5C1840BE2D00B43456 /* Persist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Persist.m; sourceTree = "<group>"; };
-		201DCD5F1840C48200B43456 /* NSData+SHA256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA256.h"; sourceTree = "<group>"; };
-		201DCD601840C48200B43456 /* NSData+SHA256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA256.m"; sourceTree = "<group>"; };
 		201DCD651840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedEnableFileOpenSavePanelDelegate.m; sourceTree = "<group>"; };
 		201DCD671840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedEnableFileOpenSavePanelDelegate.h; sourceTree = "<group>"; };
-		201DCD691840CC2D00B43456 /* NSData+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HexString.h"; sourceTree = "<group>"; };
-		201DCD6A1840CC2D00B43456 /* NSData+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HexString.m"; sourceTree = "<group>"; };
-		201DCD6D1840D21300B43456 /* NSString+SHA256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SHA256.h"; sourceTree = "<group>"; };
-		201DCD6E1840D21300B43456 /* NSString+SHA256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SHA256.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,12 +92,6 @@
 				201DCD5C1840BE2D00B43456 /* Persist.m */,
 				201DCD671840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h */,
 				201DCD651840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m */,
-				201DCD5F1840C48200B43456 /* NSData+SHA256.h */,
-				201DCD601840C48200B43456 /* NSData+SHA256.m */,
-				201DCD691840CC2D00B43456 /* NSData+HexString.h */,
-				201DCD6A1840CC2D00B43456 /* NSData+HexString.m */,
-				201DCD6D1840D21300B43456 /* NSString+SHA256.h */,
-				201DCD6E1840D21300B43456 /* NSString+SHA256.m */,
 				201DCD371840BDE600B43456 /* Supporting Files */,
 			);
 			path = AppSandboxFileAccess;
@@ -132,11 +114,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				201DCD611840C48200B43456 /* NSData+SHA256.h in Headers */,
 				201DCD5D1840BE2D00B43456 /* Persist.h in Headers */,
-				201DCD6B1840CC2D00B43456 /* NSData+HexString.h in Headers */,
 				201DCD681840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h in Headers */,
-				201DCD6F1840D21300B43456 /* NSString+SHA256.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,9 +185,6 @@
 				201DCD5E1840BE2D00B43456 /* Persist.m in Sources */,
 				201DCD3F1840BDE600B43456 /* AppSandboxFileAccess.m in Sources */,
 				201DCD661840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m in Sources */,
-				201DCD6C1840CC2D00B43456 /* NSData+HexString.m in Sources */,
-				201DCD701840D21300B43456 /* NSString+SHA256.m in Sources */,
-				201DCD621840C48200B43456 /* NSData+SHA256.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
