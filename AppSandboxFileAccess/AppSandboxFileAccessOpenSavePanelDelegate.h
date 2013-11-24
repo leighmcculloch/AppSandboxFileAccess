@@ -1,5 +1,5 @@
 //
-//  Persist.m
+//  AppSandboxFileAccessOpenSavePanelDelegate.h
 //  AppSandboxFileAccess
 //
 //  Created by Leigh McCulloch on 23/11/2013.
@@ -33,37 +33,11 @@
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "Persist.h"
 
-@implementation Persist
+#import <Foundation/Foundation.h>
 
-+ (NSString *)keyForBookmarkDataForURL:(NSURL *)url {
-	NSString *urlStr = [url absoluteString];
-	return [NSString stringWithFormat:@"bd_%1$@", urlStr];
-}
+@interface AppSandboxFileAccessOpenSavePanelDelegate : NSObject<NSOpenSavePanelDelegate>
 
-+ (NSData *)bookmarkDataForURL:(NSURL *)url {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	// loop through the bookmarks one path at a time down the URL
-	NSURL *subUrl = url;
-	while ([subUrl path].length > 1) { // give up when only '/' is left in the path
-		NSString* key = [Persist keyForBookmarkDataForURL:subUrl];
-		NSData* bookmark = [defaults dataForKey:key];
-		if (bookmark) { // if a bookmark is found, return it
-			return bookmark;
-		}
-		subUrl = [subUrl URLByDeletingLastPathComponent];
-	}
-	
-	// no bookmarks for the URL, or parent to the URL were found
-	return nil;
-}
-
-+ (void)setBookmarkData:(NSData *)data forURL:(NSURL *)url {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSString *key = [Persist keyForBookmarkDataForURL:url];
-	[defaults setObject:data forKey:key];
-}
+- (id)initWithFileURL:(NSURL *)fileUrl;
 
 @end
