@@ -64,9 +64,9 @@ typedef void (^AppSandboxFileAccessBlock)();
  the permission will be stored as a bookmark in NSUserDefaults and further calls to this function will
  load the saved permission and not ask for permission again.
  
- The file URL must exist already before calling this function. If the calling application is writing a new file, 
- the URL parameter of this function must be the path to the folder that the new file will be written to. The calling
- application will be given permission to add new files to the folder, and anything in and under that folder.
+ If the file URL does not exist, it's parent directory will be asked for permission instead, since permission
+ to the directory will be required to write the file. If the parent directory doesn't exist, it will ask for 
+ permission of whatever part of the parent path exists.
  
  Note: If the caller has permission to access a file because it was dropped onto the application or introduced
  to the application in some other way, this function will not be aware of that permission and still prompt
