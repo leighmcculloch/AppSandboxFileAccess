@@ -58,6 +58,18 @@ typedef void (^AppSandboxFileAccessBlock)();
 /*! @brief Initialise the object with the default values. */
 - (id)init;
 
+/*! @brief Access a file path to read or write, automatically gaining permission from the user with NSOpenPanel if required
+ and using persisted permissions if possible.
+ 
+ @see accessFile:withBlock:persistPermission:
+ 
+ @param path A file path, either a file or folder, that the caller needs access to.
+ @param block The block that will be given access to the file or folder.
+ @param persist If YES will save the permission for future calls.
+ @return YES if permission was granted or already available, NO otherwise.
+ */
+- (BOOL)accessFilePath:(NSString *)path withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist;
+
 /*! @brief Access a file URL to read or write, automatically gaining permission from the user with NSOpenPanel if required
  and using persisted permissions if possible.
  
@@ -77,12 +89,20 @@ typedef void (^AppSandboxFileAccessBlock)();
  whenever a user introduces a file to the application. E.g. when dropping a file onto the application window
  or dock or when using an NSOpenPanel.
  
- @param url A file URL, either a file or folder, that the caller needs access to.
+ @param fileUrl A file URL, either a file or folder, that the caller needs access to.
  @param block The block that will be given access to the file or folder.
  @param persist If YES will save the permission for future calls.
  @return YES if permission was granted or already available, NO otherwise.
  */
-- (BOOL)accessFile:(NSURL *)url withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist;
+- (BOOL)accessFileURL:(NSURL *)fileUrl withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist;
+
+/*! @brief Persist a security bookmark for the given path. The calling application must already have permission.
+ 
+ @see persistPermissionURL:
+ 
+ @param path The path with permission that will be persisted.
+ */
+- (void)persistPermissionPath:(NSString *)path;
 
 /*! @brief Persist a security bookmark for the given URL. The calling application must already have permission.
  
@@ -94,6 +114,6 @@ typedef void (^AppSandboxFileAccessBlock)();
  
  @param url The URL with permission that will be persisted.
  */
-- (void)persistPermission:(NSURL *)url;
+- (void)persistPermissionURL:(NSURL *)url;
 
 @end
