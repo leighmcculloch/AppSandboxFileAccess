@@ -15,7 +15,9 @@ http://minifyapp.com &ndash; Minify uses this code to write combined, minified a
 How to Use
 ====================
 
-Include the source .h and .m files into your own project. If you'd like to keep up-to-date with the latest updates, add this project as a submodule to your application.
+Include the source .h and .m files into your own project. If you'd like to keep up-to-date with the latest updates, add this project as a submodule to your application and then include the .h and .m files into your own project.
+
+![](screenshot-3.png)
 
 In Xcode click on your project file, then the Capabilities tab. Turn on App Sandbox and change 'User Selected File' to 'Read/Write' or 'Read Only', whichever you need. In your project Xcode will have created a .entitlements file. Open this and you should see the below. If you plan on persisting permissions you'll need to add the third entitlement.
 
