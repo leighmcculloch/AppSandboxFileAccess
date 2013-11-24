@@ -1,5 +1,5 @@
 //
-//  NSString+SHA256.h
+//  NSString+Hash.m
 //  AppSandboxFileAccess
 //
 //  Created by Leigh McCulloch on 23/11/2013.
@@ -33,11 +33,19 @@
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <Foundation/Foundation.h>
+#import "NSString+Hash.h"
+#import "NSData+Hash.h"
+#import "NSData+HexString.h"
 
-@interface NSString (SHA256)
+@implementation NSString (Hash)
 
-- (NSData *)sha256;
-- (NSString *)sha256Hex;
+- (NSData *)sha256 {
+	NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+	return [data sha256];
+}
+
+- (NSString *)sha256Hex {
+	return [[self sha256] hexString];
+}
 
 @end

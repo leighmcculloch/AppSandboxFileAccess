@@ -34,7 +34,7 @@
 //
 
 #import "Persist.h"
-#import "NSString+SHA256.h"
+#import "NSString+Hash.h"
 
 @implementation Persist
 

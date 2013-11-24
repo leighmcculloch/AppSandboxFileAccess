@@ -1,5 +1,5 @@
 //
-//  NSData+SHA256.h
+//  NSData+Hash.h
 //  AppSandboxFileAccess
 //
 //  Created by Leigh McCulloch on 23/11/2013.
@@ -35,7 +35,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSData (SHA256)
+@interface NSData (Hash)
 
 - (NSData *)sha256;
 - (NSString *)sha256Hex;
