@@ -34,8 +34,8 @@
 //
 
 #import "AppSandboxFileAccess.h"
-#import "Persist.h"
-#import "LimitedEnableFileOpenSavePanelDelegate.h"
+#import "AppSandboxFileAccessPersist.h"
+#import "AppSandboxFileAccessOpenSavePanelDelegate.h"
 
 #if !__has_feature(objc_arc)
 #error ARC must be enabled!
@@ -67,7 +67,7 @@
 	
 	// create delegate that will limit which files in the open panel can be selected, to ensure only a folder
 	// or file giving permission to the file requested can be selected
-	LimitedEnableFileOpenSavePanelDelegate *openPanelDelegate = [[LimitedEnableFileOpenSavePanelDelegate alloc] initWithFileURL:url];
+	AppSandboxFileAccessOpenSavePanelDelegate *openPanelDelegate = [[AppSandboxFileAccessOpenSavePanelDelegate alloc] initWithFileURL:url];
 	
 	// check that the url exists, if it doesn't, find the parent path of the url that does exist and ask permission for that
 	NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -109,7 +109,7 @@
 	// store the sandbox permissions
 	NSData *bookmarkData = [url bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
 	if (bookmarkData) {
-		[Persist setBookmarkData:bookmarkData forURL:url];
+		[AppSandboxFileAccessPersist setBookmarkData:bookmarkData forURL:url];
 	}
 }
 
@@ -118,7 +118,7 @@
 	NSURL *allowedUrl = nil;
 	
 	// lookup bookmark data for this url, this will automatically load bookmark data for a parent path if we have it
-	NSData *bookmarkData = [Persist bookmarkDataForURL:url];
+	NSData *bookmarkData = [AppSandboxFileAccessPersist bookmarkDataForURL:url];
 	if (bookmarkData) {
 		// resolve the bookmark data into an NSURL object that will allow us to use the file
 		BOOL bookmarkDataIsStale;

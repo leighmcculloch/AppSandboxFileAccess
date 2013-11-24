@@ -1,5 +1,5 @@
 //
-//  LimitedEnableFileOpenSavePanelDelegate.h
+//  AppSandboxFileAccessPersist.h
 //  AppSandboxFileAccess
 //
 //  Created by Leigh McCulloch on 23/11/2013.
@@ -33,11 +33,11 @@
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-
 #import <Foundation/Foundation.h>
 
-@interface LimitedEnableFileOpenSavePanelDelegate : NSObject<NSOpenSavePanelDelegate>
+@interface AppSandboxFileAccessPersist : NSObject
 
-- (id)initWithFileURL:(NSURL *)fileUrl;
++ (NSData*)bookmarkDataForURL:(NSURL*)url;
++ (void)setBookmarkData:(NSData*)data forURL:(NSURL*)url;
 
 @end
