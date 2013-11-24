@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		201DCD311840BDE600B43456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD301840BDE600B43456 /* Cocoa.framework */; };
-		201DCD3B1840BDE600B43456 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 201DCD391840BDE600B43456 /* InfoPlist.strings */; };
 		201DCD3F1840BDE600B43456 /* AppSandboxFileAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */; };
 		201DCD5D1840BE2D00B43456 /* Persist.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD5B1840BE2D00B43456 /* Persist.h */; };
 		201DCD5E1840BE2D00B43456 /* Persist.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD5C1840BE2D00B43456 /* Persist.m */; };
 		201DCD661840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD651840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m */; };
 		201DCD681840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD671840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h */; };
+		20965A2E1841C97B00389787 /* AppSandboxFileAccess-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 20965A2D1841C97B00389787 /* AppSandboxFileAccess-Prefix.pch */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,15 +23,13 @@
 		201DCD341840BDE600B43456 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		201DCD351840BDE600B43456 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		201DCD381840BDE600B43456 /* AppSandboxFileAccess-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppSandboxFileAccess-Info.plist"; sourceTree = "<group>"; };
-		201DCD3A1840BDE600B43456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		201DCD3C1840BDE600B43456 /* AppSandboxFileAccess-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppSandboxFileAccess-Prefix.pch"; sourceTree = "<group>"; };
 		201DCD3D1840BDE600B43456 /* AppSandboxFileAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccess.h; sourceTree = "<group>"; };
 		201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccess.m; sourceTree = "<group>"; };
-		201DCD451840BDE600B43456 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		201DCD5B1840BE2D00B43456 /* Persist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Persist.h; sourceTree = "<group>"; };
 		201DCD5C1840BE2D00B43456 /* Persist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Persist.m; sourceTree = "<group>"; };
 		201DCD651840C8B200B43456 /* LimitedEnableFileOpenSavePanelDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedEnableFileOpenSavePanelDelegate.m; sourceTree = "<group>"; };
 		201DCD671840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedEnableFileOpenSavePanelDelegate.h; sourceTree = "<group>"; };
+		20965A2D1841C97B00389787 /* AppSandboxFileAccess-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppSandboxFileAccess-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				201DCD301840BDE600B43456 /* Cocoa.framework */,
-				201DCD451840BDE600B43456 /* XCTest.framework */,
 				201DCD321840BDE600B43456 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -101,8 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				201DCD381840BDE600B43456 /* AppSandboxFileAccess-Info.plist */,
-				201DCD391840BDE600B43456 /* InfoPlist.strings */,
-				201DCD3C1840BDE600B43456 /* AppSandboxFileAccess-Prefix.pch */,
+				20965A2D1841C97B00389787 /* AppSandboxFileAccess-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -115,6 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				201DCD5D1840BE2D00B43456 /* Persist.h in Headers */,
+				20965A2E1841C97B00389787 /* AppSandboxFileAccess-Prefix.pch in Headers */,
 				201DCD681840C8D200B43456 /* LimitedEnableFileOpenSavePanelDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,7 +168,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				201DCD3B1840BDE600B43456 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,17 +185,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		201DCD391840BDE600B43456 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				201DCD3A1840BDE600B43456 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		201DCD531840BDE600B43456 /* Debug */ = {
@@ -222,6 +207,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -259,6 +245,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
