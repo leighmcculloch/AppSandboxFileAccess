@@ -91,7 +91,6 @@
 		[openPanel setPrompt:self.prompt];
 		[openPanel setTitle:self.title];
 		[openPanel setShowsHiddenFiles:NO];
-		[openPanel setShowsTagField:NO];
 		[openPanel setExtensionHidden:NO];
 		[openPanel setDirectoryURL:url];
 		[openPanel setDelegate:openPanelDelegate];
