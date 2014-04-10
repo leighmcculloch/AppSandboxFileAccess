@@ -81,7 +81,7 @@
 	url = [NSURL fileURLWithPath:path];
 	
 	// display the open panel
-	dispatch_sync(dispatch_get_main_queue(), ^{
+	void (^display_panel_block)() = ^{
 		NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 		[openPanel setMessage:self.message];
 		[openPanel setCanCreateDirectories:NO];
@@ -99,8 +99,14 @@
 		if (openPanelButtonPressed == NSFileHandlingPanelOKButton) {
 			allowedUrl = [openPanel URL];
 		}
-	});
-	
+	};
+	dispatch_queue_t main_queue = dispatch_get_main_queue();
+	if (dispatch_get_current_queue() == main_queue) {
+		display_panel_block();
+	} else {
+		dispatch_sync(main_queue, display_panel_block);
+	}
+
 	return allowedUrl;
 }
 
