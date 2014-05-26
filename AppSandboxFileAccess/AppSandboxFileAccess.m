@@ -42,6 +42,7 @@
 #endif
 
 #define CFBundleDisplayName @"CFBundleDisplayName"
+#define CFBundleName        @"CFBundleName"
 
 @implementation AppSandboxFileAccess
 
@@ -52,7 +53,11 @@
 - (id)init {
 	self = [super init];
 	if (self) {
-		NSString *applicationName = [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:CFBundleDisplayName];
+		NSString *applicationName = [[NSBundle mainBundle] objectForInfoDictionaryKey:CFBundleDisplayName];
+		if (!applicationName) {
+			applicationName = [[NSBundle mainBundle] objectForInfoDictionaryKey:CFBundleName];
+		}
+		
 		self.title = @"Allow Access";
 		self.message = [NSString stringWithFormat:@"%@ needs to access this path to continue. Click Allow to continue.", applicationName];
 		self.prompt = @"Allow";
