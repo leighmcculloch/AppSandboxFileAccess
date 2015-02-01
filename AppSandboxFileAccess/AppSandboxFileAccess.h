@@ -61,14 +61,19 @@ typedef void (^AppSandboxFileAccessBlock)();
 /*! @brief Access a file path to read or write, automatically gaining permission from the user with NSOpenPanel if required
  and using persisted permissions if possible.
  
- @see accessFile:withBlock:persistPermission:
+ @see accessFile:persistPermission:withBlock:
  
  @param path A file path, either a file or folder, that the caller needs access to.
- @param block The block that will be given access to the file or folder.
  @param persist If YES will save the permission for future calls.
+ @param block The block that will be given access to the file or folder.
  @return YES if permission was granted or already available, NO otherwise.
  */
-- (BOOL)accessFilePath:(NSString *)path withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist;
+- (BOOL)accessFilePath:(NSString *)path persistPermission:(BOOL)persist withBlock:(AppSandboxFileAccessBlock)block;
+
+/*!
+ Deprecated. Use 'accessFilePath:persistPermission:withBlock:' instead.
+ */
+- (BOOL)accessFilePath:(NSString *)path withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist __attribute__((deprecated("Use 'accessFilePath:persistPermission:withBlock:' instead.")));
 
 /*! @brief Access a file URL to read or write, automatically gaining permission from the user with NSOpenPanel if required
  and using persisted permissions if possible.
@@ -94,7 +99,12 @@ typedef void (^AppSandboxFileAccessBlock)();
  @param persist If YES will save the permission for future calls.
  @return YES if permission was granted or already available, NO otherwise.
  */
-- (BOOL)accessFileURL:(NSURL *)fileURL withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist;
+- (BOOL)accessFileURL:(NSURL *)fileURL persistPermission:(BOOL)persist withBlock:(AppSandboxFileAccessBlock)block;
+
+/*!
+ Deprecated. Use 'accessFileURL:persistPermission:withBlock:' instead.
+ */
+- (BOOL)accessFileURL:(NSURL *)fileURL withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist __attribute__((deprecated("Use 'accessFileURL:persistPermission:withBlock:' instead.")));
 
 /*! @brief Persist a security bookmark for the given path. The calling application must already have permission.
  
