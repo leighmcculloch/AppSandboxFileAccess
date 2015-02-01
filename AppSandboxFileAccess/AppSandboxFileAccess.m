@@ -50,7 +50,7 @@
 	return [[AppSandboxFileAccess alloc] init];
 }
 
-- (id)init {
+- (instancetype)init {
 	self = [super init];
 	if (self) {
 		NSString *applicationName = [[NSBundle mainBundle] objectForInfoDictionaryKey:CFBundleDisplayName];
