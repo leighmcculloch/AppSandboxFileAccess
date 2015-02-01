@@ -8,13 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		201DCD311840BDE600B43456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD301840BDE600B43456 /* Cocoa.framework */; };
-		201DCD3F1840BDE600B43456 /* AppSandboxFileAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */; };
-		201DCD5D1840BE2D00B43456 /* AppSandboxFileAccessPersist.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD5B1840BE2D00B43456 /* AppSandboxFileAccessPersist.h */; };
-		201DCD5E1840BE2D00B43456 /* AppSandboxFileAccessPersist.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD5C1840BE2D00B43456 /* AppSandboxFileAccessPersist.m */; };
-		201DCD661840C8B200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD651840C8B200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.m */; };
-		201DCD681840C8D200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD671840C8D200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.h */; };
-		20965A331841CAB200389787 /* AppSandboxFileAccess-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 20965A311841CAB200389787 /* AppSandboxFileAccess-Prefix.pch */; };
-		20965A341841CC3600389787 /* AppSandboxFileAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD3D1840BDE600B43456 /* AppSandboxFileAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C212FEC51A7E83ED00BE3532 /* AppSandboxFileAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = C212FEBF1A7E83ED00BE3532 /* AppSandboxFileAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C212FEC61A7E83ED00BE3532 /* AppSandboxFileAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FEC01A7E83ED00BE3532 /* AppSandboxFileAccess.m */; };
+		C212FEC71A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = C212FEC11A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C212FEC81A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FEC21A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m */; };
+		C212FEC91A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h in Headers */ = {isa = PBXBuildFile; fileRef = C212FEC31A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C212FECA1A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FEC41A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,14 +22,14 @@
 		201DCD331840BDE600B43456 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		201DCD341840BDE600B43456 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		201DCD351840BDE600B43456 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		201DCD3D1840BDE600B43456 /* AppSandboxFileAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccess.h; sourceTree = "<group>"; };
-		201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccess.m; sourceTree = "<group>"; };
-		201DCD5B1840BE2D00B43456 /* AppSandboxFileAccessPersist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccessPersist.h; sourceTree = "<group>"; };
-		201DCD5C1840BE2D00B43456 /* AppSandboxFileAccessPersist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessPersist.m; sourceTree = "<group>"; };
-		201DCD651840C8B200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessOpenSavePanelDelegate.m; sourceTree = "<group>"; };
-		201DCD671840C8D200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccessOpenSavePanelDelegate.h; sourceTree = "<group>"; };
-		20965A301841CAB200389787 /* AppSandboxFileAccess-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppSandboxFileAccess-Info.plist"; sourceTree = "<group>"; };
-		20965A311841CAB200389787 /* AppSandboxFileAccess-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppSandboxFileAccess-Prefix.pch"; sourceTree = "<group>"; };
+		C212FEBF1A7E83ED00BE3532 /* AppSandboxFileAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccess.h; sourceTree = "<group>"; };
+		C212FEC01A7E83ED00BE3532 /* AppSandboxFileAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccess.m; sourceTree = "<group>"; };
+		C212FEC11A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccessOpenSavePanelDelegate.h; sourceTree = "<group>"; };
+		C212FEC21A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessOpenSavePanelDelegate.m; sourceTree = "<group>"; };
+		C212FEC31A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccessPersist.h; sourceTree = "<group>"; };
+		C212FEC41A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessPersist.m; sourceTree = "<group>"; };
+		C212FECB1A7E83F800BE3532 /* AppSandboxFileAccess-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppSandboxFileAccess-Info.plist"; path = "AppSandboxFileAccess/AppSandboxFileAccess-Info.plist"; sourceTree = "<group>"; };
+		C212FECC1A7E83F800BE3532 /* AppSandboxFileAccess-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AppSandboxFileAccess-Prefix.pch"; path = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				201DCD361840BDE600B43456 /* AppSandboxFileAccess */,
+				C212FECF1A7E840D00BE3532 /* Supporting Files */,
 				20965A2F1841CA9D00389787 /* AppSandboxFileAccess Supporting Files */,
 				201DCD2F1840BDE600B43456 /* Frameworks */,
 				201DCD2E1840BDE600B43456 /* Products */,
@@ -85,12 +85,7 @@
 		201DCD361840BDE600B43456 /* AppSandboxFileAccess */ = {
 			isa = PBXGroup;
 			children = (
-				201DCD3D1840BDE600B43456 /* AppSandboxFileAccess.h */,
-				201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */,
-				201DCD5B1840BE2D00B43456 /* AppSandboxFileAccessPersist.h */,
-				201DCD5C1840BE2D00B43456 /* AppSandboxFileAccessPersist.m */,
-				201DCD671840C8D200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.h */,
-				201DCD651840C8B200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.m */,
+				C212FEBE1A7E83ED00BE3532 /* Classes */,
 			);
 			path = AppSandboxFileAccess;
 			sourceTree = "<group>";
@@ -98,10 +93,30 @@
 		20965A2F1841CA9D00389787 /* AppSandboxFileAccess Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				20965A301841CAB200389787 /* AppSandboxFileAccess-Info.plist */,
-				20965A311841CAB200389787 /* AppSandboxFileAccess-Prefix.pch */,
 			);
 			path = "AppSandboxFileAccess Supporting Files";
+			sourceTree = "<group>";
+		};
+		C212FEBE1A7E83ED00BE3532 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C212FEBF1A7E83ED00BE3532 /* AppSandboxFileAccess.h */,
+				C212FEC01A7E83ED00BE3532 /* AppSandboxFileAccess.m */,
+				C212FEC11A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.h */,
+				C212FEC21A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m */,
+				C212FEC31A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h */,
+				C212FEC41A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		C212FECF1A7E840D00BE3532 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C212FECB1A7E83F800BE3532 /* AppSandboxFileAccess-Info.plist */,
+				C212FECC1A7E83F800BE3532 /* AppSandboxFileAccess-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,10 +126,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20965A341841CC3600389787 /* AppSandboxFileAccess.h in Headers */,
-				201DCD5D1840BE2D00B43456 /* AppSandboxFileAccessPersist.h in Headers */,
-				20965A331841CAB200389787 /* AppSandboxFileAccess-Prefix.pch in Headers */,
-				201DCD681840C8D200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.h in Headers */,
+				C212FEC91A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h in Headers */,
+				C212FEC51A7E83ED00BE3532 /* AppSandboxFileAccess.h in Headers */,
+				C212FEC71A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,9 +194,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				201DCD5E1840BE2D00B43456 /* AppSandboxFileAccessPersist.m in Sources */,
-				201DCD3F1840BDE600B43456 /* AppSandboxFileAccess.m in Sources */,
-				201DCD661840C8B200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.m in Sources */,
+				C212FEC81A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m in Sources */,
+				C212FECA1A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m in Sources */,
+				C212FEC61A7E83ED00BE3532 /* AppSandboxFileAccess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,8 +281,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Prefix.pch";
-				INFOPLIST_FILE = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Info.plist";
+				GCC_PREFIX_HEADER = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch";
+				INFOPLIST_FILE = "AppSandboxFileAccess/AppSandboxFileAccess-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -282,8 +296,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Prefix.pch";
-				INFOPLIST_FILE = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Info.plist";
+				GCC_PREFIX_HEADER = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch";
+				INFOPLIST_FILE = "AppSandboxFileAccess/AppSandboxFileAccess-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
