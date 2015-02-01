@@ -117,13 +117,13 @@
 	return allowedURL;
 }
 
-- (void)persistPermissionPath:(NSString *)path {
+- (NSData *)persistPermissionPath:(NSString *)path {
 	NSParameterAssert(path);
 	
-	[self persistPermissionURL:[NSURL fileURLWithPath:path]];
+	return [self persistPermissionURL:[NSURL fileURLWithPath:path]];
 }
 
-- (void)persistPermissionURL:(NSURL *)url {
+- (NSData *)persistPermissionURL:(NSURL *)url {
 	NSParameterAssert(url);
 	
 	// store the sandbox permissions
@@ -131,6 +131,7 @@
 	if (bookmarkData) {
 		[AppSandboxFileAccessPersist setBookmarkData:bookmarkData forURL:url];
 	}
+	return bookmarkData;
 }
 
 - (BOOL)accessFilePath:(NSString *)path withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist {
@@ -150,6 +151,31 @@
 - (BOOL)accessFileURL:(NSURL *)fileURL persistPermission:(BOOL)persist withBlock:(AppSandboxFileAccessBlock)block {
 	NSParameterAssert(fileURL);
 	NSParameterAssert(block);
+	
+	BOOL success = [self requestAccessPermissionsForFileURL:fileURL persistPermission:persist withBlock:^(NSURL *securityScopedFileURL, NSData *bookmarkData) {
+		// execute the block with the file access permissions
+		@try {
+			[securityScopedFileURL startAccessingSecurityScopedResource];
+			block();
+		} @finally {
+			[securityScopedFileURL stopAccessingSecurityScopedResource];
+		}
+	}];
+	
+	return success;
+}
+
+- (BOOL)requestAccessPermissionsForFilePath:(NSString *)filePath persistPermission:(BOOL)persist withBlock:(AppSandboxFileSecurityScopeBlock)block {
+	NSParameterAssert(filePath);
+	
+	NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+	return [self requestAccessPermissionsForFileURL:fileURL persistPermission:persist withBlock:block];
+}
+
+- (BOOL)requestAccessPermissionsForFileURL:(NSURL *)fileURL persistPermission:(BOOL)persist withBlock:(AppSandboxFileSecurityScopeBlock)block {
+	NSParameterAssert(fileURL);
+	
+	[self persistPermissionURL:fileURL];
 	
 	NSURL *allowedURL = nil;
 	
@@ -179,15 +205,11 @@
 	
 	// if we have no bookmark data, we need to create it, this may be because our bookmark data was stale, or this is the first time being given permission
 	if (persist && !bookmarkData) {
-		[self persistPermissionURL:allowedURL];
+		bookmarkData = [self persistPermissionURL:allowedURL];
 	}
 	
-	// execute the block with the file access permissions
-	@try {
-		[allowedURL startAccessingSecurityScopedResource];
-		block();
-	} @finally {
-		[allowedURL stopAccessingSecurityScopedResource];
+	if (block && allowedURL && bookmarkData) {
+		block(allowedURL, bookmarkData);
 	}
 	
 	return YES;
