@@ -42,8 +42,8 @@
 
 @interface AppSandboxFileAccessOpenSavePanelDelegate ()
 
-@property (retain) NSURL *url;
-@property (retain) NSArray *urlPath;
+@property (readwrite, strong, nonatomic) NSURL *url;
+@property (readwrite, copy,   nonatomic) NSArray *urlPath;
 
 @end
 

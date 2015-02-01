@@ -42,15 +42,15 @@ typedef void (^AppSandboxFileAccessBlock)();
 /*! @brief The title of the NSOpenPanel displayed when asking permission to access a file.
  Default: "Allow Access"
  */
-@property (retain) NSString *title;
+@property (readwrite, copy, nonatomic) NSString *title;
 /*! @brief The message contained on the the NSOpenPanel displayed when asking permission to access a file.
  Default: "[Application Name] needs to access this path to continue. Click Allow to continue."
  */
-@property (retain) NSString *message;
+@property (readwrite, copy, nonatomic) NSString *message;
 /*! @brief The prompt button on the the NSOpenPanel displayed when asking permission to access a file. 
  Default: "Allow"
  */
-@property (retain) NSString *prompt;
+@property (readwrite, copy, nonatomic) NSString *prompt;
 
 /*! @brief Create the object with the default values. */
 + (AppSandboxFileAccess *)fileAccess;
