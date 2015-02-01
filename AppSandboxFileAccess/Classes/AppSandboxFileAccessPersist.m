@@ -1,5 +1,5 @@
 //
-//  AppSandboxFileAccessOpenSavePanelDelegate.m
+//  AppSandboxFileAccessPersist.m
 //  AppSandboxFileAccess
 //
 //  Created by Leigh McCulloch on 23/11/2013.
@@ -33,53 +33,41 @@
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-
-#import "AppSandboxFileAccessOpenSavePanelDelegate.h"
+#import "AppSandboxFileAccessPersist.h"
 
 #if !__has_feature(objc_arc)
 #error ARC must be enabled!
 #endif
 
-@interface AppSandboxFileAccessOpenSavePanelDelegate ()
+@implementation AppSandboxFileAccessPersist
 
-@property (retain) NSURL *url;
-@property (retain) NSArray *urlPath;
-
-@end
-
-@implementation AppSandboxFileAccessOpenSavePanelDelegate
-
-- (id)initWithFileURL:(NSURL *)fileUrl {
-	self = [super init];
-	if (self) {
-		self.url = fileUrl;
-		self.urlPath = [self.url pathComponents];
-	}
-	return self;
++ (NSString *)keyForBookmarkDataForURL:(NSURL *)url {
+	NSString *urlStr = [url absoluteString];
+	return [NSString stringWithFormat:@"bd_%1$@", urlStr];
 }
 
-#pragma mark -- NSOpenSavePanelDelegate
-
-- (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url {
-	NSArray *urlPath = [url pathComponents];
++ (NSData *)bookmarkDataForURL:(NSURL *)url {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
-	// if the url passed in has more components, it could not be a parent path or a exact same path
-	if (urlPath.count > self.urlPath.count) {
-		return NO;
-	}
-	
-	// check that each path component in url, is the same as each corresponding component in self.url
-	for (int i = 0; i < urlPath.count; ++i) {
-		NSString *comp1 = urlPath[i];
-		NSString *comp2 = self.urlPath[i];
-		// not the same, therefore url is not a parent or exact match to self.url
-		if (![comp1 isEqualToString:comp2]) {
-			return NO;
+	// loop through the bookmarks one path at a time down the URL
+	NSURL *subURL = url;
+	while ([subURL path].length > 1) { // give up when only '/' is left in the path
+		NSString *key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:subURL];
+		NSData *bookmark = [defaults dataForKey:key];
+		if (bookmark) { // if a bookmark is found, return it
+			return bookmark;
 		}
+		subURL = [subURL URLByDeletingLastPathComponent];
 	}
 	
-	// there were no mismatches (or no components meaning url is root)
-	return YES;
+	// no bookmarks for the URL, or parent to the URL were found
+	return nil;
+}
+
++ (void)setBookmarkData:(NSData *)data forURL:(NSURL *)url {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSString *key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:url];
+	[defaults setObject:data forKey:key];
 }
 
 @end

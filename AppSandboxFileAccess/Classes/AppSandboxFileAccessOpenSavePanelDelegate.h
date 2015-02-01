@@ -36,8 +36,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AppSandboxFileAccessOpenSavePanelDelegate : NSObject<NSOpenSavePanelDelegate>
+@interface AppSandboxFileAccessOpenSavePanelDelegate : NSObject <NSOpenSavePanelDelegate>
 
-- (id)initWithFileURL:(NSURL *)fileUrl;
+- (instancetype)initWithFileURL:(NSURL *)fileURL;
 
 @end
