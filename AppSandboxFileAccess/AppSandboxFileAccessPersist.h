@@ -37,7 +37,7 @@
 
 @interface AppSandboxFileAccessPersist : NSObject
 
-+ (NSData*)bookmarkDataForURL:(NSURL*)url;
-+ (void)setBookmarkData:(NSData*)data forURL:(NSURL*)url;
++ (NSData *)bookmarkDataForURL:(NSURL *)url;
++ (void)setBookmarkData:(NSData *)data forURL:(NSURL *)url;
 
 @end

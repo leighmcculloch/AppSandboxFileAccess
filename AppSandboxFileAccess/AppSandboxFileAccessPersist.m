@@ -48,8 +48,8 @@
 	// loop through the bookmarks one path at a time down the URL
 	NSURL *subURL = url;
 	while ([subURL path].length > 1) { // give up when only '/' is left in the path
-		NSString* key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:subURL];
-		NSData* bookmark = [defaults dataForKey:key];
+		NSString *key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:subURL];
+		NSData *bookmark = [defaults dataForKey:key];
 		if (bookmark) { // if a bookmark is found, return it
 			return bookmark;
 		}
