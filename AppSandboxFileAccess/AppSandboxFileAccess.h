@@ -56,7 +56,7 @@ typedef void (^AppSandboxFileAccessBlock)();
 + (AppSandboxFileAccess *)fileAccess;
 
 /*! @brief Initialise the object with the default values. */
-- (id)init;
+- (instancetype)init;
 
 /*! @brief Access a file path to read or write, automatically gaining permission from the user with NSOpenPanel if required
  and using persisted permissions if possible.
