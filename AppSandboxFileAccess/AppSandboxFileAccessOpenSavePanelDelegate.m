@@ -42,8 +42,7 @@
 
 @interface AppSandboxFileAccessOpenSavePanelDelegate ()
 
-@property (readwrite, strong, nonatomic) NSURL *url;
-@property (readwrite, copy,   nonatomic) NSArray *urlPath;
+@property (readwrite, strong, nonatomic) NSArray *pathComponents;
 
 @end
 
@@ -52,8 +51,8 @@
 - (instancetype)initWithFileURL:(NSURL *)fileURL {
 	self = [super init];
 	if (self) {
-		self.url = fileURL;
-		self.urlPath = [self.url pathComponents];
+		NSParameterAssert(fileURL);
+		self.pathComponents = fileURL.pathComponents;
 	}
 	return self;
 }
@@ -61,17 +60,20 @@
 #pragma mark -- NSOpenSavePanelDelegate
 
 - (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url {
-	NSArray *urlPath = [url pathComponents];
+	NSParameterAssert(url);
+	
+	NSArray *pathComponents = self.pathComponents;
+	NSArray *otherPathComponents = url.pathComponents;
 	
 	// if the url passed in has more components, it could not be a parent path or a exact same path
-	if (urlPath.count > self.urlPath.count) {
+	if (otherPathComponents.count > pathComponents.count) {
 		return NO;
 	}
 	
 	// check that each path component in url, is the same as each corresponding component in self.url
-	for (int i = 0; i < urlPath.count; ++i) {
-		NSString *comp1 = urlPath[i];
-		NSString *comp2 = self.urlPath[i];
+	for (NSUInteger i = 0; i < otherPathComponents.count; ++i) {
+		NSString *comp1 = otherPathComponents[i];
+		NSString *comp2 = pathComponents[i];
 		// not the same, therefore url is not a parent or exact match to self.url
 		if (![comp1 isEqualToString:comp2]) {
 			return NO;
