@@ -58,9 +58,10 @@
 			applicationName = [[NSBundle mainBundle] objectForInfoDictionaryKey:CFBundleName];
 		}
 		
-		self.title = @"Allow Access";
-		self.message = [NSString stringWithFormat:@"%@ needs to access this path to continue. Click Allow to continue.", applicationName];
-		self.prompt = @"Allow";
+		self.title = NSLocalizedString(@"Allow Access", @"Sandbox Access panel title.");
+		NSString *formatString = NSLocalizedString(@"%@ needs to access this path to continue. Click Allow to continue.", @"Sandbox Access panel message.");
+		self.message = [NSString stringWithFormat:formatString, applicationName];
+		self.prompt = NSLocalizedString(@"Allow", @"Sandbox Access panel prompt.");
 		
 	}
 	return self;
