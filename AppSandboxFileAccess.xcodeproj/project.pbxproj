@@ -14,7 +14,19 @@
 		C212FEC81A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FEC21A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m */; };
 		C212FEC91A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h in Headers */ = {isa = PBXBuildFile; fileRef = C212FEC31A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C212FECA1A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FEC41A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m */; };
+		C212FED91A7E8B6700BE3532 /* AppSandboxFileAccessOpenSavePanelDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FED81A7E8B6700BE3532 /* AppSandboxFileAccessOpenSavePanelDelegateTests.m */; };
+		C212FEDA1A7E8B6700BE3532 /* AppSandboxFileAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C212FEDB1A7E8B6700BE3532 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 201DCD241840BDE600B43456 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 201DCD2C1840BDE600B43456;
+			remoteInfo = AppSandboxFileAccess;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppSandboxFileAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +42,9 @@
 		C212FEC41A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessPersist.m; sourceTree = "<group>"; };
 		C212FECB1A7E83F800BE3532 /* AppSandboxFileAccess-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppSandboxFileAccess-Info.plist"; path = "AppSandboxFileAccess/AppSandboxFileAccess-Info.plist"; sourceTree = "<group>"; };
 		C212FECC1A7E83F800BE3532 /* AppSandboxFileAccess-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AppSandboxFileAccess-Prefix.pch"; path = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch"; sourceTree = "<group>"; };
+		C212FED41A7E8B6700BE3532 /* AppSandboxFileAccessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppSandboxFileAccessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C212FED71A7E8B6700BE3532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C212FED81A7E8B6700BE3532 /* AppSandboxFileAccessOpenSavePanelDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessOpenSavePanelDelegateTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +53,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				201DCD311840BDE600B43456 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C212FED11A7E8B6700BE3532 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C212FEDA1A7E8B6700BE3532 /* AppSandboxFileAccess.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +73,7 @@
 				201DCD361840BDE600B43456 /* AppSandboxFileAccess */,
 				C212FECF1A7E840D00BE3532 /* Supporting Files */,
 				20965A2F1841CA9D00389787 /* AppSandboxFileAccess Supporting Files */,
+				C212FED51A7E8B6700BE3532 /* AppSandboxFileAccessTests */,
 				201DCD2F1840BDE600B43456 /* Frameworks */,
 				201DCD2E1840BDE600B43456 /* Products */,
 			);
@@ -59,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */,
+				C212FED41A7E8B6700BE3532 /* AppSandboxFileAccessTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,6 +144,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C212FED51A7E8B6700BE3532 /* AppSandboxFileAccessTests */ = {
+			isa = PBXGroup;
+			children = (
+				C212FED81A7E8B6700BE3532 /* AppSandboxFileAccessOpenSavePanelDelegateTests.m */,
+				C212FED61A7E8B6700BE3532 /* Supporting Files */,
+			);
+			path = AppSandboxFileAccessTests;
+			sourceTree = "<group>";
+		};
+		C212FED61A7E8B6700BE3532 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C212FED71A7E8B6700BE3532 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -153,6 +195,24 @@
 			productReference = 201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		C212FED31A7E8B6700BE3532 /* AppSandboxFileAccessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C212FEDD1A7E8B6700BE3532 /* Build configuration list for PBXNativeTarget "AppSandboxFileAccessTests" */;
+			buildPhases = (
+				C212FED01A7E8B6700BE3532 /* Sources */,
+				C212FED11A7E8B6700BE3532 /* Frameworks */,
+				C212FED21A7E8B6700BE3532 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C212FEDC1A7E8B6700BE3532 /* PBXTargetDependency */,
+			);
+			name = AppSandboxFileAccessTests;
+			productName = AppSandboxFileAccessTests;
+			productReference = C212FED41A7E8B6700BE3532 /* AppSandboxFileAccessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -161,6 +221,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Leigh McCulloch";
+				TargetAttributes = {
+					C212FED31A7E8B6700BE3532 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
 			};
 			buildConfigurationList = 201DCD271840BDE600B43456 /* Build configuration list for PBXProject "AppSandboxFileAccess" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -175,12 +240,20 @@
 			projectRoot = "";
 			targets = (
 				201DCD2C1840BDE600B43456 /* AppSandboxFileAccess */,
+				C212FED31A7E8B6700BE3532 /* AppSandboxFileAccessTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		201DCD2B1840BDE600B43456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C212FED21A7E8B6700BE3532 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -200,7 +273,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C212FED01A7E8B6700BE3532 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C212FED91A7E8B6700BE3532 /* AppSandboxFileAccessOpenSavePanelDelegateTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C212FEDC1A7E8B6700BE3532 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 201DCD2C1840BDE600B43456 /* AppSandboxFileAccess */;
+			targetProxy = C212FEDB1A7E8B6700BE3532 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		201DCD531840BDE600B43456 /* Debug */ = {
@@ -303,6 +392,50 @@
 			};
 			name = Release;
 		};
+		C212FEDE1A7E8B6700BE3532 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = AppSandboxFileAccessTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C212FEDF1A7E8B6700BE3532 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = AppSandboxFileAccessTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -323,6 +456,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C212FEDD1A7E8B6700BE3532 /* Build configuration list for PBXNativeTarget "AppSandboxFileAccessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C212FEDE1A7E8B6700BE3532 /* Debug */,
+				C212FEDF1A7E8B6700BE3532 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
