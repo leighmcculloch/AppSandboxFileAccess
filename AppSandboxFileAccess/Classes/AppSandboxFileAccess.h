@@ -36,6 +36,7 @@
 #import <Foundation/Foundation.h>
 
 typedef void (^AppSandboxFileAccessBlock)();
+typedef void (^AppSandboxFileSecurityScopeBlock)(NSURL *securityScopedFileURL, NSData *bookmarkData);
 
 @interface AppSandboxFileAccess : NSObject
 
@@ -62,6 +63,7 @@ typedef void (^AppSandboxFileAccessBlock)();
  and using persisted permissions if possible.
  
  @see accessFile:persistPermission:withBlock:
+ @see securityScopedURLForFilePath:persistPermission:bookmark:
  
  @param path A file path, either a file or folder, that the caller needs access to.
  @param persist If YES will save the permission for future calls.
@@ -71,11 +73,57 @@ typedef void (^AppSandboxFileAccessBlock)();
 - (BOOL)accessFilePath:(NSString *)path persistPermission:(BOOL)persist withBlock:(AppSandboxFileAccessBlock)block;
 
 /*!
- Deprecated. Use 'accessFilePath:persistPermission:withBlock:' instead.
+ @warning Deprecated.
+ 
+ @see accessFilePath:persistPermission:withBlock:
+ 
+ @param path A file path, either a file or folder, that the caller needs access to.
+ @param block The block that will be given access to the file or folder.
+ @param persist If YES will save the permission for future calls.
+ @return YES if permission was granted or already available, NO otherwise.
  */
 - (BOOL)accessFilePath:(NSString *)path withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist __attribute__((deprecated("Use 'accessFilePath:persistPermission:withBlock:' instead.")));
 
 /*! @brief Access a file URL to read or write, automatically gaining permission from the user with NSOpenPanel if required
+ and using persisted permissions if possible.
+ 
+ @see requestAccessPermissionsForFileURL:persistPermission:withBlock:
+ 
+ @discussion Internally calls `requestAccessPermissionsForFileURL:persistPermission:withBlock:` and accesses the returned scoped URL if successful.
+ 
+ @discussion See `requestAccessPermissionsForFileURL:persistPermission:withBlock:` for detailed behaviour.
+ 
+ @param fileURL A file URL, either a file or folder, that the caller needs access to.
+ @param persist If YES will save the permission for future calls.
+ @param block The block that will be given access to the file or folder.
+ @return YES if permission was granted or already available, NO otherwise.
+ */
+- (BOOL)accessFileURL:(NSURL *)fileURL persistPermission:(BOOL)persist withBlock:(AppSandboxFileAccessBlock)block;
+
+/*!
+ @warning Deprecated.
+ 
+ @see accessFileURL:persistPermission:withBlock:
+ 
+ @param fileURL A file URL, either a file or folder, that the caller needs access to.
+ @param persist If YES will save the permission for future calls.
+ @param block The block that will be given access to the file or folder.
+ @return YES if permission was granted or already available, NO otherwise.
+ */
+- (BOOL)accessFileURL:(NSURL *)fileURL withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist __attribute__((deprecated("Use 'accessFileURL:persistPermission:withBlock:' instead.")));
+
+/*! @brief Request access permission for a file path to read or write, automatically with NSOpenPanel if required
+ and using persisted permissions if possible.
+ 
+ @see securityScopedURLForFilePath:persistPermission:bookmark:
+ 
+ @param path A file path, either a file or folder, that the caller needs access to.
+ @param persist If YES will save the permission for future calls.
+ @return YES if permission was granted or already available, NO otherwise.
+ */
+- (BOOL)requestAccessPermissionsForFilePath:(NSString *)filePath persistPermission:(BOOL)persist withBlock:(AppSandboxFileSecurityScopeBlock)block;
+
+/*! @brief Request access permission for a file path to read or write, automatically with NSOpenPanel if required
  and using persisted permissions if possible.
  
  @discussion Use this function to access a file URL to either read or write in an application restricted by the App Sandbox.
@@ -85,7 +133,7 @@ typedef void (^AppSandboxFileAccessBlock)();
  load the saved permission and not ask for permission again.
  
  @discussion If the file URL does not exist, it's parent directory will be asked for permission instead, since permission
- to the directory will be required to write the file. If the parent directory doesn't exist, it will ask for 
+ to the directory will be required to write the file. If the parent directory doesn't exist, it will ask for
  permission of whatever part of the parent path exists.
  
  @discussion Note: If the caller has permission to access a file because it was dropped onto the application or introduced
@@ -95,24 +143,20 @@ typedef void (^AppSandboxFileAccessBlock)();
  or dock or when using an NSOpenPanel.
  
  @param fileURL A file URL, either a file or folder, that the caller needs access to.
- @param block The block that will be given access to the file or folder.
  @param persist If YES will save the permission for future calls.
+ @param block The block that will be given access to the file or folder.
  @return YES if permission was granted or already available, NO otherwise.
  */
-- (BOOL)accessFileURL:(NSURL *)fileURL persistPermission:(BOOL)persist withBlock:(AppSandboxFileAccessBlock)block;
-
-/*!
- Deprecated. Use 'accessFileURL:persistPermission:withBlock:' instead.
- */
-- (BOOL)accessFileURL:(NSURL *)fileURL withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist __attribute__((deprecated("Use 'accessFileURL:persistPermission:withBlock:' instead.")));
+- (BOOL)requestAccessPermissionsForFileURL:(NSURL *)fileURL persistPermission:(BOOL)persist withBlock:(AppSandboxFileSecurityScopeBlock)block;
 
 /*! @brief Persist a security bookmark for the given path. The calling application must already have permission.
  
  @see persistPermissionURL:
  
  @param path The path with permission that will be persisted.
+ @return Bookmark data if permission was granted or already available, nil otherwise.
  */
-- (void)persistPermissionPath:(NSString *)path;
+- (NSData *)persistPermissionPath:(NSString *)path;
 
 /*! @brief Persist a security bookmark for the given URL. The calling application must already have permission.
  
@@ -123,7 +167,8 @@ typedef void (^AppSandboxFileAccessBlock)();
  Note: If the calling application does not have access to this file, this call will do nothing.
  
  @param url The URL with permission that will be persisted.
+ @return Bookmark data if permission was granted or already available, nil otherwise.
  */
-- (void)persistPermissionURL:(NSURL *)url;
+- (NSData *)persistPermissionURL:(NSURL *)url;
 
 @end
