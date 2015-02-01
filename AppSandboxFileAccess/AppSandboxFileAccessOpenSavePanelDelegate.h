@@ -38,6 +38,6 @@
 
 @interface AppSandboxFileAccessOpenSavePanelDelegate : NSObject<NSOpenSavePanelDelegate>
 
-- (id)initWithFileURL:(NSURL *)fileUrl;
+- (id)initWithFileURL:(NSURL *)fileURL;
 
 @end

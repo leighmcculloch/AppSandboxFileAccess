@@ -49,10 +49,10 @@
 
 @implementation AppSandboxFileAccessOpenSavePanelDelegate
 
-- (id)initWithFileURL:(NSURL *)fileUrl {
+- (id)initWithFileURL:(NSURL *)fileURL {
 	self = [super init];
 	if (self) {
-		self.url = fileUrl;
+		self.url = fileURL;
 		self.urlPath = [self.url pathComponents];
 	}
 	return self;

@@ -66,9 +66,9 @@
 	return self;
 }
 
-- (NSURL *)askPermissionForUrl:(NSURL *)url {
+- (NSURL *)askPermissionForURL:(NSURL *)url {
 	// this url will be the url allowed, it might be a parent url of the url passed in
-	__block NSURL *allowedUrl = nil;
+	__block NSURL *allowedURL = nil;
 	
 	// create delegate that will limit which files in the open panel can be selected, to ensure only a folder
 	// or file giving permission to the file requested can be selected
@@ -102,7 +102,7 @@
 		[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 		NSInteger openPanelButtonPressed = [openPanel runModal];
 		if (openPanelButtonPressed == NSFileHandlingPanelOKButton) {
-			allowedUrl = [openPanel URL];
+			allowedURL = [openPanel URL];
 		}
 	};
 	if ([NSThread isMainThread]) {
@@ -111,7 +111,7 @@
 		dispatch_sync(dispatch_get_main_queue(), displayOpenPanelBlock);
 	}
 
-	return allowedUrl;
+	return allowedURL;
 }
 
 - (void)persistPermissionPath:(NSString *)path {
@@ -130,19 +130,19 @@
 	return [self accessFileURL:[NSURL fileURLWithPath:path] withBlock:block persistPermission:persist];
 }
 
-- (BOOL)accessFileURL:(NSURL *)fileUrl withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist {
+- (BOOL)accessFileURL:(NSURL *)fileURL withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist {
 
-	NSURL *allowedUrl = nil;
+	NSURL *allowedURL = nil;
 	
-	// standardize the file url and remove any symlinks so that the url we lookup in bookmark data would match a url given by the askPermissionForUrl method
-	fileUrl = [[fileUrl URLByStandardizingPath] URLByResolvingSymlinksInPath];
+	// standardize the file url and remove any symlinks so that the url we lookup in bookmark data would match a url given by the askPermissionForURL method
+	fileURL = [[fileURL URLByStandardizingPath] URLByResolvingSymlinksInPath];
 	
 	// lookup bookmark data for this url, this will automatically load bookmark data for a parent path if we have it
-	NSData *bookmarkData = [AppSandboxFileAccessPersist bookmarkDataForURL:fileUrl];
+	NSData *bookmarkData = [AppSandboxFileAccessPersist bookmarkDataForURL:fileURL];
 	if (bookmarkData) {
 		// resolve the bookmark data into an NSURL object that will allow us to use the file
 		BOOL bookmarkDataIsStale;
-		allowedUrl = [NSURL URLByResolvingBookmarkData:bookmarkData options:NSURLBookmarkResolutionWithSecurityScope|NSURLBookmarkResolutionWithoutUI relativeToURL:nil bookmarkDataIsStale:&bookmarkDataIsStale error:NULL];
+		allowedURL = [NSURL URLByResolvingBookmarkData:bookmarkData options:NSURLBookmarkResolutionWithSecurityScope|NSURLBookmarkResolutionWithoutUI relativeToURL:nil bookmarkDataIsStale:&bookmarkDataIsStale error:NULL];
 		// if the bookmark data is stale, we'll create new bookmark data further down
 		if (bookmarkDataIsStale) {
 			bookmarkData = nil;
@@ -150,9 +150,9 @@
 	}
 	
 	// if allowed url is nil, we need to ask the user for permission
-	if (!allowedUrl) {
-		allowedUrl = [self askPermissionForUrl:fileUrl];
-		if (!allowedUrl) {
+	if (!allowedURL) {
+		allowedURL = [self askPermissionForURL:fileURL];
+		if (!allowedURL) {
 			// if the user did not give permission, exit out here
 			return NO;
 		}
@@ -160,15 +160,15 @@
 	
 	// if we have no bookmark data, we need to create it, this may be because our bookmark data was stale, or this is the first time being given permission
 	if (persist && !bookmarkData) {
-		[self persistPermissionURL:allowedUrl];
+		[self persistPermissionURL:allowedURL];
 	}
 	
 	// execute the block with the file access permissions
 	@try {
-		[allowedUrl startAccessingSecurityScopedResource];
+		[allowedURL startAccessingSecurityScopedResource];
 		block();
 	} @finally {
-		[allowedUrl stopAccessingSecurityScopedResource];
+		[allowedURL stopAccessingSecurityScopedResource];
 	}
 	
 	return YES;
