@@ -68,6 +68,8 @@
 }
 
 - (NSURL *)askPermissionForURL:(NSURL *)url {
+	NSParameterAssert(url);
+	
 	// this url will be the url allowed, it might be a parent url of the url passed in
 	__block NSURL *allowedURL = nil;
 	
@@ -116,10 +118,14 @@
 }
 
 - (void)persistPermissionPath:(NSString *)path {
+	NSParameterAssert(path);
+	
 	[self persistPermissionURL:[NSURL fileURLWithPath:path]];
 }
 
 - (void)persistPermissionURL:(NSURL *)url {
+	NSParameterAssert(url);
+	
 	// store the sandbox permissions
 	NSData *bookmarkData = [url bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
 	if (bookmarkData) {
@@ -132,7 +138,9 @@
 }
 
 - (BOOL)accessFileURL:(NSURL *)fileURL withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist {
-
+	NSParameterAssert(fileURL);
+	NSParameterAssert(block);
+	
 	NSURL *allowedURL = nil;
 	
 	// standardize the file url and remove any symlinks so that the url we lookup in bookmark data would match a url given by the askPermissionForURL method
