@@ -134,10 +134,20 @@
 }
 
 - (BOOL)accessFilePath:(NSString *)path withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist {
-	return [self accessFileURL:[NSURL fileURLWithPath:path] withBlock:block persistPermission:persist];
+	// Deprecated. Use 'accessFilePath:persistPermission:withBlock:' instead.
+	return [self accessFilePath:path persistPermission:persist withBlock:block];
 }
 
 - (BOOL)accessFileURL:(NSURL *)fileURL withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist {
+	// Deprecated. Use 'accessFileURL:persistPermission:withBlock:' instead.
+	return [self accessFileURL:fileURL persistPermission:persist withBlock:block];
+}
+
+- (BOOL)accessFilePath:(NSString *)path persistPermission:(BOOL)persist withBlock:(AppSandboxFileAccessBlock)block {
+	return [self accessFileURL:[NSURL fileURLWithPath:path] persistPermission:persist withBlock:block];
+}
+
+- (BOOL)accessFileURL:(NSURL *)fileURL persistPermission:(BOOL)persist withBlock:(AppSandboxFileAccessBlock)block {
 	NSParameterAssert(fileURL);
 	NSParameterAssert(block);
 	
