@@ -89,12 +89,12 @@ typedef void (^AppSandboxFileAccessBlock)();
  whenever a user introduces a file to the application. E.g. when dropping a file onto the application window
  or dock or when using an NSOpenPanel.
  
- @param fileUrl A file URL, either a file or folder, that the caller needs access to.
+ @param fileURL A file URL, either a file or folder, that the caller needs access to.
  @param block The block that will be given access to the file or folder.
  @param persist If YES will save the permission for future calls.
  @return YES if permission was granted or already available, NO otherwise.
  */
-- (BOOL)accessFileURL:(NSURL *)fileUrl withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist;
+- (BOOL)accessFileURL:(NSURL *)fileURL withBlock:(AppSandboxFileAccessBlock)block persistPermission:(BOOL)persist;
 
 /*! @brief Persist a security bookmark for the given path. The calling application must already have permission.
  
