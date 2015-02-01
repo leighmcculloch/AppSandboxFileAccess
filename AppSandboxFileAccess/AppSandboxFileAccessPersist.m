@@ -35,6 +35,10 @@
 
 #import "AppSandboxFileAccessPersist.h"
 
+#if !__has_feature(objc_arc)
+#error ARC must be enabled!
+#endif
+
 @implementation AppSandboxFileAccessPersist
 
 + (NSString *)keyForBookmarkDataForURL:(NSURL *)url {
