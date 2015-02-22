@@ -175,8 +175,6 @@
 - (BOOL)requestAccessPermissionsForFileURL:(NSURL *)fileURL persistPermission:(BOOL)persist withBlock:(AppSandboxFileSecurityScopeBlock)block {
 	NSParameterAssert(fileURL);
 	
-	[self persistPermissionURL:fileURL];
-	
 	NSURL *allowedURL = nil;
 	
 	// standardize the file url and remove any symlinks so that the url we lookup in bookmark data would match a url given by the askPermissionForURL method
