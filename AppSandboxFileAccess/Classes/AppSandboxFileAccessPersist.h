@@ -39,5 +39,6 @@
 
 + (NSData *)bookmarkDataForURL:(NSURL *)url;
 + (void)setBookmarkData:(NSData *)data forURL:(NSURL *)url;
++ (void)clearBookmarkDataForURL:(NSURL *)url;
 
 @end

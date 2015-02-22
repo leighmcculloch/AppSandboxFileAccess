@@ -70,4 +70,10 @@
 	[defaults setObject:data forKey:key];
 }
 
++ (void)clearBookmarkDataForURL:(NSURL *)url {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSString *key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:url];
+	[defaults removeObjectForKey:key];
+}
+
 @end
