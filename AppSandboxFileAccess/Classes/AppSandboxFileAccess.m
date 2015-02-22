@@ -206,7 +206,7 @@
 		bookmarkData = [self persistPermissionURL:allowedURL];
 	}
 	
-	if (block && allowedURL && bookmarkData) {
+	if (block) {
 		block(allowedURL, bookmarkData);
 	}
 	
