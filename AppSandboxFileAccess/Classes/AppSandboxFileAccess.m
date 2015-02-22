@@ -186,9 +186,16 @@
 		// resolve the bookmark data into an NSURL object that will allow us to use the file
 		BOOL bookmarkDataIsStale;
 		allowedURL = [NSURL URLByResolvingBookmarkData:bookmarkData options:NSURLBookmarkResolutionWithSecurityScope|NSURLBookmarkResolutionWithoutUI relativeToURL:nil bookmarkDataIsStale:&bookmarkDataIsStale error:NULL];
-		// if the bookmark data is stale, we'll create new bookmark data further down
+		// if the bookmark data is stale we'll attempt to recreate it with the existing url object if possible (not guaranteed)
 		if (bookmarkDataIsStale) {
 			bookmarkData = nil;
+			[AppSandboxFileAccessPersist clearBookmarkDataForURL:fileURL];
+			if (allowedURL) {
+				bookmarkData = [self persistPermissionURL:allowedURL];
+				if (!bookmarkData) {
+					allowedURL = nil;
+				}
+			}
 		}
 	}
 	
@@ -201,7 +208,7 @@
 		}
 	}
 	
-	// if we have no bookmark data, we need to create it, this may be because our bookmark data was stale, or this is the first time being given permission
+	// if we have no bookmark data and we want to persist, we need to create it
 	if (persist && !bookmarkData) {
 		bookmarkData = [self persistPermissionURL:allowedURL];
 	}
