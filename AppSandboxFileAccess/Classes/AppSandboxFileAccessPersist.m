@@ -35,6 +35,10 @@
 
 #import "AppSandboxFileAccessPersist.h"
 
+#if !__has_feature(objc_arc)
+#error ARC must be enabled!
+#endif
+
 @implementation AppSandboxFileAccessPersist
 
 + (NSString *)keyForBookmarkDataForURL:(NSURL *)url {
@@ -46,14 +50,14 @@
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	// loop through the bookmarks one path at a time down the URL
-	NSURL *subUrl = url;
-	while ([subUrl path].length > 1) { // give up when only '/' is left in the path
-		NSString* key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:subUrl];
-		NSData* bookmark = [defaults dataForKey:key];
+	NSURL *subURL = url;
+	while ([subURL path].length > 1) { // give up when only '/' is left in the path
+		NSString *key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:subURL];
+		NSData *bookmark = [defaults dataForKey:key];
 		if (bookmark) { // if a bookmark is found, return it
 			return bookmark;
 		}
-		subUrl = [subUrl URLByDeletingLastPathComponent];
+		subURL = [subURL URLByDeletingLastPathComponent];
 	}
 	
 	// no bookmarks for the URL, or parent to the URL were found
@@ -64,6 +68,12 @@
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSString *key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:url];
 	[defaults setObject:data forKey:key];
+}
+
++ (void)clearBookmarkDataForURL:(NSURL *)url {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSString *key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:url];
+	[defaults removeObjectForKey:key];
 }
 
 @end

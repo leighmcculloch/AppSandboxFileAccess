@@ -8,14 +8,52 @@
 
 /* Begin PBXBuildFile section */
 		201DCD311840BDE600B43456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD301840BDE600B43456 /* Cocoa.framework */; };
-		201DCD3F1840BDE600B43456 /* AppSandboxFileAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */; };
-		201DCD5D1840BE2D00B43456 /* AppSandboxFileAccessPersist.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD5B1840BE2D00B43456 /* AppSandboxFileAccessPersist.h */; };
-		201DCD5E1840BE2D00B43456 /* AppSandboxFileAccessPersist.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD5C1840BE2D00B43456 /* AppSandboxFileAccessPersist.m */; };
-		201DCD661840C8B200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 201DCD651840C8B200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.m */; };
-		201DCD681840C8D200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD671840C8D200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.h */; };
-		20965A331841CAB200389787 /* AppSandboxFileAccess-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 20965A311841CAB200389787 /* AppSandboxFileAccess-Prefix.pch */; };
-		20965A341841CC3600389787 /* AppSandboxFileAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 201DCD3D1840BDE600B43456 /* AppSandboxFileAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C212FEC51A7E83ED00BE3532 /* AppSandboxFileAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = C212FEBF1A7E83ED00BE3532 /* AppSandboxFileAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C212FEC61A7E83ED00BE3532 /* AppSandboxFileAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FEC01A7E83ED00BE3532 /* AppSandboxFileAccess.m */; };
+		C212FEC71A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = C212FEC11A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C212FEC81A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FEC21A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m */; };
+		C212FEC91A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h in Headers */ = {isa = PBXBuildFile; fileRef = C212FEC31A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C212FECA1A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FEC41A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m */; };
+		C212FED91A7E8B6700BE3532 /* AppSandboxFileAccessOpenSavePanelDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FED81A7E8B6700BE3532 /* AppSandboxFileAccessOpenSavePanelDelegateTests.m */; };
+		C212FEDA1A7E8B6700BE3532 /* AppSandboxFileAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */; };
+		C212FEEA1A7E944E00BE3532 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FEE91A7E944E00BE3532 /* AppDelegate.m */; };
+		C212FEEC1A7E944E00BE3532 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FEEB1A7E944E00BE3532 /* main.m */; };
+		C212FEEE1A7E944E00BE3532 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C212FEED1A7E944E00BE3532 /* Images.xcassets */; };
+		C212FEF11A7E944E00BE3532 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C212FEEF1A7E944E00BE3532 /* MainMenu.xib */; };
+		C212FF061A7E950600BE3532 /* AppSandboxFileAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */; };
+		C212FF081A7E951600BE3532 /* AppSandboxFileAccess.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C212FEDB1A7E8B6700BE3532 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 201DCD241840BDE600B43456 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 201DCD2C1840BDE600B43456;
+			remoteInfo = AppSandboxFileAccess;
+		};
+		C212FF041A7E950200BE3532 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 201DCD241840BDE600B43456 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 201DCD2C1840BDE600B43456;
+			remoteInfo = AppSandboxFileAccess;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C212FF071A7E950A00BE3532 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C212FF081A7E951600BE3532 /* AppSandboxFileAccess.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppSandboxFileAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -23,14 +61,25 @@
 		201DCD331840BDE600B43456 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		201DCD341840BDE600B43456 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		201DCD351840BDE600B43456 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		201DCD3D1840BDE600B43456 /* AppSandboxFileAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccess.h; sourceTree = "<group>"; };
-		201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccess.m; sourceTree = "<group>"; };
-		201DCD5B1840BE2D00B43456 /* AppSandboxFileAccessPersist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccessPersist.h; sourceTree = "<group>"; };
-		201DCD5C1840BE2D00B43456 /* AppSandboxFileAccessPersist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessPersist.m; sourceTree = "<group>"; };
-		201DCD651840C8B200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessOpenSavePanelDelegate.m; sourceTree = "<group>"; };
-		201DCD671840C8D200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccessOpenSavePanelDelegate.h; sourceTree = "<group>"; };
-		20965A301841CAB200389787 /* AppSandboxFileAccess-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppSandboxFileAccess-Info.plist"; sourceTree = "<group>"; };
-		20965A311841CAB200389787 /* AppSandboxFileAccess-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppSandboxFileAccess-Prefix.pch"; sourceTree = "<group>"; };
+		C212FEBF1A7E83ED00BE3532 /* AppSandboxFileAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccess.h; sourceTree = "<group>"; };
+		C212FEC01A7E83ED00BE3532 /* AppSandboxFileAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccess.m; sourceTree = "<group>"; };
+		C212FEC11A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccessOpenSavePanelDelegate.h; sourceTree = "<group>"; };
+		C212FEC21A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessOpenSavePanelDelegate.m; sourceTree = "<group>"; };
+		C212FEC31A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSandboxFileAccessPersist.h; sourceTree = "<group>"; };
+		C212FEC41A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessPersist.m; sourceTree = "<group>"; };
+		C212FECB1A7E83F800BE3532 /* AppSandboxFileAccess-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppSandboxFileAccess-Info.plist"; path = "AppSandboxFileAccess/AppSandboxFileAccess-Info.plist"; sourceTree = "<group>"; };
+		C212FECC1A7E83F800BE3532 /* AppSandboxFileAccess-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AppSandboxFileAccess-Prefix.pch"; path = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch"; sourceTree = "<group>"; };
+		C212FED41A7E8B6700BE3532 /* AppSandboxFileAccessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppSandboxFileAccessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C212FED71A7E8B6700BE3532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C212FED81A7E8B6700BE3532 /* AppSandboxFileAccessOpenSavePanelDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSandboxFileAccessOpenSavePanelDelegateTests.m; sourceTree = "<group>"; };
+		C212FEE41A7E944E00BE3532 /* AppSandboxFileAccessDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppSandboxFileAccessDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C212FEE71A7E944E00BE3532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C212FEE81A7E944E00BE3532 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C212FEE91A7E944E00BE3532 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C212FEEB1A7E944E00BE3532 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C212FEED1A7E944E00BE3532 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C212FEF01A7E944E00BE3532 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C212FF091A7E97F700BE3532 /* AppSandboxFileAccessDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AppSandboxFileAccessDemo.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +91,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C212FED11A7E8B6700BE3532 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C212FEDA1A7E8B6700BE3532 /* AppSandboxFileAccess.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C212FEE11A7E944E00BE3532 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C212FF061A7E950600BE3532 /* AppSandboxFileAccess.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -49,7 +114,9 @@
 			isa = PBXGroup;
 			children = (
 				201DCD361840BDE600B43456 /* AppSandboxFileAccess */,
-				20965A2F1841CA9D00389787 /* AppSandboxFileAccess Supporting Files */,
+				C212FECF1A7E840D00BE3532 /* Supporting Files */,
+				C212FED51A7E8B6700BE3532 /* AppSandboxFileAccessTests */,
+				C212FEE51A7E944E00BE3532 /* AppSandboxFileAccessDemo */,
 				201DCD2F1840BDE600B43456 /* Frameworks */,
 				201DCD2E1840BDE600B43456 /* Products */,
 			);
@@ -59,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */,
+				C212FED41A7E8B6700BE3532 /* AppSandboxFileAccessTests.xctest */,
+				C212FEE41A7E944E00BE3532 /* AppSandboxFileAccessDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,23 +154,70 @@
 		201DCD361840BDE600B43456 /* AppSandboxFileAccess */ = {
 			isa = PBXGroup;
 			children = (
-				201DCD3D1840BDE600B43456 /* AppSandboxFileAccess.h */,
-				201DCD3E1840BDE600B43456 /* AppSandboxFileAccess.m */,
-				201DCD5B1840BE2D00B43456 /* AppSandboxFileAccessPersist.h */,
-				201DCD5C1840BE2D00B43456 /* AppSandboxFileAccessPersist.m */,
-				201DCD671840C8D200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.h */,
-				201DCD651840C8B200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.m */,
+				C212FEBE1A7E83ED00BE3532 /* Classes */,
 			);
 			path = AppSandboxFileAccess;
 			sourceTree = "<group>";
 		};
-		20965A2F1841CA9D00389787 /* AppSandboxFileAccess Supporting Files */ = {
+		C212FEBE1A7E83ED00BE3532 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				20965A301841CAB200389787 /* AppSandboxFileAccess-Info.plist */,
-				20965A311841CAB200389787 /* AppSandboxFileAccess-Prefix.pch */,
+				C212FEBF1A7E83ED00BE3532 /* AppSandboxFileAccess.h */,
+				C212FEC01A7E83ED00BE3532 /* AppSandboxFileAccess.m */,
+				C212FEC11A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.h */,
+				C212FEC21A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m */,
+				C212FEC31A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h */,
+				C212FEC41A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m */,
 			);
-			path = "AppSandboxFileAccess Supporting Files";
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		C212FECF1A7E840D00BE3532 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C212FECB1A7E83F800BE3532 /* AppSandboxFileAccess-Info.plist */,
+				C212FECC1A7E83F800BE3532 /* AppSandboxFileAccess-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C212FED51A7E8B6700BE3532 /* AppSandboxFileAccessTests */ = {
+			isa = PBXGroup;
+			children = (
+				C212FED81A7E8B6700BE3532 /* AppSandboxFileAccessOpenSavePanelDelegateTests.m */,
+				C212FED61A7E8B6700BE3532 /* Supporting Files */,
+			);
+			path = AppSandboxFileAccessTests;
+			sourceTree = "<group>";
+		};
+		C212FED61A7E8B6700BE3532 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C212FED71A7E8B6700BE3532 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C212FEE51A7E944E00BE3532 /* AppSandboxFileAccessDemo */ = {
+			isa = PBXGroup;
+			children = (
+				C212FF091A7E97F700BE3532 /* AppSandboxFileAccessDemo.entitlements */,
+				C212FEE81A7E944E00BE3532 /* AppDelegate.h */,
+				C212FEE91A7E944E00BE3532 /* AppDelegate.m */,
+				C212FEED1A7E944E00BE3532 /* Images.xcassets */,
+				C212FEEF1A7E944E00BE3532 /* MainMenu.xib */,
+				C212FEE61A7E944E00BE3532 /* Supporting Files */,
+			);
+			path = AppSandboxFileAccessDemo;
+			sourceTree = "<group>";
+		};
+		C212FEE61A7E944E00BE3532 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C212FEE71A7E944E00BE3532 /* Info.plist */,
+				C212FEEB1A7E944E00BE3532 /* main.m */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,10 +227,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20965A341841CC3600389787 /* AppSandboxFileAccess.h in Headers */,
-				201DCD5D1840BE2D00B43456 /* AppSandboxFileAccessPersist.h in Headers */,
-				20965A331841CAB200389787 /* AppSandboxFileAccess-Prefix.pch in Headers */,
-				201DCD681840C8D200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.h in Headers */,
+				C212FEC91A7E83ED00BE3532 /* AppSandboxFileAccessPersist.h in Headers */,
+				C212FEC51A7E83ED00BE3532 /* AppSandboxFileAccess.h in Headers */,
+				C212FEC71A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +254,43 @@
 			productReference = 201DCD2D1840BDE600B43456 /* AppSandboxFileAccess.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		C212FED31A7E8B6700BE3532 /* AppSandboxFileAccessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C212FEDD1A7E8B6700BE3532 /* Build configuration list for PBXNativeTarget "AppSandboxFileAccessTests" */;
+			buildPhases = (
+				C212FED01A7E8B6700BE3532 /* Sources */,
+				C212FED11A7E8B6700BE3532 /* Frameworks */,
+				C212FED21A7E8B6700BE3532 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C212FEDC1A7E8B6700BE3532 /* PBXTargetDependency */,
+			);
+			name = AppSandboxFileAccessTests;
+			productName = AppSandboxFileAccessTests;
+			productReference = C212FED41A7E8B6700BE3532 /* AppSandboxFileAccessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C212FEE31A7E944E00BE3532 /* AppSandboxFileAccessDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C212FEFE1A7E944E00BE3532 /* Build configuration list for PBXNativeTarget "AppSandboxFileAccessDemo" */;
+			buildPhases = (
+				C212FEE01A7E944E00BE3532 /* Sources */,
+				C212FEE11A7E944E00BE3532 /* Frameworks */,
+				C212FEE21A7E944E00BE3532 /* Resources */,
+				C212FF071A7E950A00BE3532 /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C212FF051A7E950200BE3532 /* PBXTargetDependency */,
+			);
+			name = AppSandboxFileAccessDemo;
+			productName = AppSandboxFileAccessDemo;
+			productReference = C212FEE41A7E944E00BE3532 /* AppSandboxFileAccessDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -147,6 +299,19 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Leigh McCulloch";
+				TargetAttributes = {
+					C212FED31A7E8B6700BE3532 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					C212FEE31A7E944E00BE3532 = {
+						CreatedOnToolsVersion = 6.1.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 201DCD271840BDE600B43456 /* Build configuration list for PBXProject "AppSandboxFileAccess" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -154,6 +319,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 201DCD231840BDE600B43456;
 			productRefGroup = 201DCD2E1840BDE600B43456 /* Products */;
@@ -161,6 +327,8 @@
 			projectRoot = "";
 			targets = (
 				201DCD2C1840BDE600B43456 /* AppSandboxFileAccess */,
+				C212FED31A7E8B6700BE3532 /* AppSandboxFileAccessTests */,
+				C212FEE31A7E944E00BE3532 /* AppSandboxFileAccessDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -173,6 +341,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C212FED21A7E8B6700BE3532 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C212FEE21A7E944E00BE3532 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C212FEEE1A7E944E00BE3532 /* Images.xcassets in Resources */,
+				C212FEF11A7E944E00BE3532 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -180,13 +364,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				201DCD5E1840BE2D00B43456 /* AppSandboxFileAccessPersist.m in Sources */,
-				201DCD3F1840BDE600B43456 /* AppSandboxFileAccess.m in Sources */,
-				201DCD661840C8B200B43456 /* AppSandboxFileAccessOpenSavePanelDelegate.m in Sources */,
+				C212FEC81A7E83ED00BE3532 /* AppSandboxFileAccessOpenSavePanelDelegate.m in Sources */,
+				C212FECA1A7E83ED00BE3532 /* AppSandboxFileAccessPersist.m in Sources */,
+				C212FEC61A7E83ED00BE3532 /* AppSandboxFileAccess.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C212FED01A7E8B6700BE3532 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C212FED91A7E8B6700BE3532 /* AppSandboxFileAccessOpenSavePanelDelegateTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C212FEE01A7E944E00BE3532 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C212FEEC1A7E944E00BE3532 /* main.m in Sources */,
+				C212FEEA1A7E944E00BE3532 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C212FEDC1A7E8B6700BE3532 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 201DCD2C1840BDE600B43456 /* AppSandboxFileAccess */;
+			targetProxy = C212FEDB1A7E8B6700BE3532 /* PBXContainerItemProxy */;
+		};
+		C212FF051A7E950200BE3532 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 201DCD2C1840BDE600B43456 /* AppSandboxFileAccess */;
+			targetProxy = C212FF041A7E950200BE3532 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C212FEEF1A7E944E00BE3532 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C212FEF01A7E944E00BE3532 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		201DCD531840BDE600B43456 /* Debug */ = {
@@ -267,8 +492,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Prefix.pch";
-				INFOPLIST_FILE = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Info.plist";
+				GCC_PREFIX_HEADER = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch";
+				INFOPLIST_FILE = "AppSandboxFileAccess/AppSandboxFileAccess-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -282,10 +507,96 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Prefix.pch";
-				INFOPLIST_FILE = "AppSandboxFileAccess Supporting Files/AppSandboxFileAccess-Info.plist";
+				GCC_PREFIX_HEADER = "AppSandboxFileAccess/AppSandboxFileAccess-Prefix.pch";
+				INFOPLIST_FILE = "AppSandboxFileAccess/AppSandboxFileAccess-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		C212FEDE1A7E8B6700BE3532 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = AppSandboxFileAccessTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C212FEDF1A7E8B6700BE3532 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = AppSandboxFileAccessTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C212FEFF1A7E944E00BE3532 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = AppSandboxFileAccessDemo/AppSandboxFileAccessDemo.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = AppSandboxFileAccessDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C212FF001A7E944E00BE3532 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = AppSandboxFileAccessDemo/AppSandboxFileAccessDemo.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = AppSandboxFileAccessDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -309,6 +620,23 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C212FEDD1A7E8B6700BE3532 /* Build configuration list for PBXNativeTarget "AppSandboxFileAccessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C212FEDE1A7E8B6700BE3532 /* Debug */,
+				C212FEDF1A7E8B6700BE3532 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C212FEFE1A7E944E00BE3532 /* Build configuration list for PBXNativeTarget "AppSandboxFileAccessDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C212FEFF1A7E944E00BE3532 /* Debug */,
+				C212FF001A7E944E00BE3532 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

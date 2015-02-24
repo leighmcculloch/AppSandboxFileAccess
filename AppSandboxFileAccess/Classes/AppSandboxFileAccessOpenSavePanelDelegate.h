@@ -1,5 +1,5 @@
 //
-//  AppSandboxFileAccessOpenSavePanelDelegate.m
+//  AppSandboxFileAccessOpenSavePanelDelegate.h
 //  AppSandboxFileAccess
 //
 //  Created by Leigh McCulloch on 23/11/2013.
@@ -34,52 +34,10 @@
 //
 
 
-#import "AppSandboxFileAccessOpenSavePanelDelegate.h"
+#import <Foundation/Foundation.h>
 
-#if !__has_feature(objc_arc)
-#error ARC must be enabled!
-#endif
+@interface AppSandboxFileAccessOpenSavePanelDelegate : NSObject <NSOpenSavePanelDelegate>
 
-@interface AppSandboxFileAccessOpenSavePanelDelegate ()
-
-@property (retain) NSURL *url;
-@property (retain) NSArray *urlPath;
-
-@end
-
-@implementation AppSandboxFileAccessOpenSavePanelDelegate
-
-- (id)initWithFileURL:(NSURL *)fileUrl {
-	self = [super init];
-	if (self) {
-		self.url = fileUrl;
-		self.urlPath = [self.url pathComponents];
-	}
-	return self;
-}
-
-#pragma mark -- NSOpenSavePanelDelegate
-
-- (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url {
-	NSArray *urlPath = [url pathComponents];
-	
-	// if the url passed in has more components, it could not be a parent path or a exact same path
-	if (urlPath.count > self.urlPath.count) {
-		return NO;
-	}
-	
-	// check that each path component in url, is the same as each corresponding component in self.url
-	for (int i = 0; i < urlPath.count; ++i) {
-		NSString *comp1 = urlPath[i];
-		NSString *comp2 = self.urlPath[i];
-		// not the same, therefore url is not a parent or exact match to self.url
-		if (![comp1 isEqualToString:comp2]) {
-			return NO;
-		}
-	}
-	
-	// there were no mismatches (or no components meaning url is root)
-	return YES;
-}
+- (instancetype)initWithFileURL:(NSURL *)fileURL;
 
 @end
