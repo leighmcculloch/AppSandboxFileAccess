@@ -34,6 +34,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@import AppKit;
 
 typedef void (^AppSandboxFileAccessBlock)();
 typedef void (^AppSandboxFileSecurityScopeBlock)(NSURL *securityScopedFileURL, NSData *bookmarkData);

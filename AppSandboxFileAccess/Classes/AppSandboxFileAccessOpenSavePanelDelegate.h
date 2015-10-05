@@ -35,6 +35,7 @@
 
 
 #import <Foundation/Foundation.h>
+@import AppKit;
 
 @interface AppSandboxFileAccessOpenSavePanelDelegate : NSObject <NSOpenSavePanelDelegate>
 
