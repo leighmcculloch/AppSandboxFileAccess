@@ -127,9 +127,15 @@
 	NSParameterAssert(url);
 	
 	// store the sandbox permissions
-	NSData *bookmarkData = [url bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
+	NSData *bookmarkData = [url bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope
+						 includingResourceValuesForKeys:nil
+										  relativeToURL:nil
+												  error:NULL];
 	if (bookmarkData) {
-		[AppSandboxFileAccessPersist setBookmarkData:bookmarkData forURL:url];
+		if (self.bookmarkPersistanceDelegate)
+			[self.bookmarkPersistanceDelegate setBookmarkData:bookmarkData forURL:url];
+		else
+			[AppSandboxFileAccessPersist setBookmarkData:bookmarkData forURL:url];
 	}
 	return bookmarkData;
 }
@@ -181,15 +187,23 @@
 	fileURL = [[fileURL URLByStandardizingPath] URLByResolvingSymlinksInPath];
 	
 	// lookup bookmark data for this url, this will automatically load bookmark data for a parent path if we have it
-	NSData *bookmarkData = [AppSandboxFileAccessPersist bookmarkDataForURL:fileURL];
+	NSData *bookmarkData = (self.bookmarkPersistanceDelegate) ? [self.bookmarkPersistanceDelegate bookmarkDataForURL:fileURL] : [AppSandboxFileAccessPersist bookmarkDataForURL:fileURL];
+	
 	if (bookmarkData) {
 		// resolve the bookmark data into an NSURL object that will allow us to use the file
 		BOOL bookmarkDataIsStale;
-		allowedURL = [NSURL URLByResolvingBookmarkData:bookmarkData options:NSURLBookmarkResolutionWithSecurityScope|NSURLBookmarkResolutionWithoutUI relativeToURL:nil bookmarkDataIsStale:&bookmarkDataIsStale error:NULL];
+		allowedURL = [NSURL URLByResolvingBookmarkData:bookmarkData
+											   options:NSURLBookmarkResolutionWithSecurityScope|NSURLBookmarkResolutionWithoutUI
+										 relativeToURL:nil
+								   bookmarkDataIsStale:&bookmarkDataIsStale
+												 error:NULL];
 		// if the bookmark data is stale we'll attempt to recreate it with the existing url object if possible (not guaranteed)
 		if (bookmarkDataIsStale) {
 			bookmarkData = nil;
-			[AppSandboxFileAccessPersist clearBookmarkDataForURL:fileURL];
+			if (self.bookmarkPersistanceDelegate)
+				[self.bookmarkPersistanceDelegate clearBookmarkDataForURL:fileURL];
+			else
+				[AppSandboxFileAccessPersist clearBookmarkDataForURL:fileURL];
 			if (allowedURL) {
 				bookmarkData = [self persistPermissionURL:allowedURL];
 				if (!bookmarkData) {
@@ -218,6 +232,15 @@
 	}
 	
 	return YES;
+}
+
+- (void)setBookmarkPersistanceDelegate:(NSObject<AppSandboxFileAccessProtocol> *)bookmarkPersistanceDelegate
+{
+	// Make sure the delegate conforms to the protocol.
+	if (bookmarkPersistanceDelegate != nil && [[bookmarkPersistanceDelegate class] conformsToProtocol:@protocol(AppSandboxFileAccessProtocol)] == NO)
+		NSAssert(FALSE, @"The provided delegate does not implement all of the required methods.");
+	
+	_bookmarkPersistanceDelegate = bookmarkPersistanceDelegate;
 }
 
 @end
