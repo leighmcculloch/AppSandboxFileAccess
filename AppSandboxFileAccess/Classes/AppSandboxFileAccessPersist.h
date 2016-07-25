@@ -34,11 +34,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppSandboxFileAccess.h"
 
-@interface AppSandboxFileAccessPersist : NSObject
+@interface AppSandboxFileAccessPersist : NSObject <AppSandboxFileAccessProtocol>
 
-+ (NSData *)bookmarkDataForURL:(NSURL *)url;
-+ (void)setBookmarkData:(NSData *)data forURL:(NSURL *)url;
-+ (void)clearBookmarkDataForURL:(NSURL *)url;
+- (NSData *)bookmarkDataForURL:(NSURL *)url;
+- (void)setBookmarkData:(NSData *)data forURL:(NSURL *)url;
+- (void)clearBookmarkDataForURL:(NSURL *)url;
 
 @end
