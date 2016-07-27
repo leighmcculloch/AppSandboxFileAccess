@@ -46,7 +46,7 @@
 	return [NSString stringWithFormat:@"bd_%1$@", urlStr];
 }
 
-+ (NSData *)bookmarkDataForURL:(NSURL *)url {
+- (NSData *)bookmarkDataForURL:(NSURL *)url {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	// loop through the bookmarks one path at a time down the URL
@@ -64,13 +64,13 @@
 	return nil;
 }
 
-+ (void)setBookmarkData:(NSData *)data forURL:(NSURL *)url {
+- (void)setBookmarkData:(NSData *)data forURL:(NSURL *)url {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSString *key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:url];
 	[defaults setObject:data forKey:key];
 }
 
-+ (void)clearBookmarkDataForURL:(NSURL *)url {
+- (void)clearBookmarkDataForURL:(NSURL *)url {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSString *key = [AppSandboxFileAccessPersist keyForBookmarkDataForURL:url];
 	[defaults removeObjectForKey:key];

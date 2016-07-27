@@ -36,6 +36,21 @@
 #import <Foundation/Foundation.h>
 @import AppKit;
 
+#pragma mark -
+#pragma mark AppSandboxFileAccessProtocol
+
+@protocol AppSandboxFileAccessProtocol<NSObject>
+
+@required
+- (NSData *)bookmarkDataForURL:(NSURL *)url;
+- (void)setBookmarkData:(NSData *)data forURL:(NSURL *)url;
+- (void)clearBookmarkDataForURL:(NSURL *)url;
+
+@end
+
+#pragma mark -
+#pragma mark AppSandboxFileAccess
+
 typedef void (^AppSandboxFileAccessBlock)();
 typedef void (^AppSandboxFileSecurityScopeBlock)(NSURL *securityScopedFileURL, NSData *bookmarkData);
 
@@ -53,6 +68,11 @@ typedef void (^AppSandboxFileSecurityScopeBlock)(NSURL *securityScopedFileURL, N
  Default: "Allow"
  */
 @property (readwrite, copy, nonatomic) NSString *prompt;
+
+/*! @brief This is an optional delegate object that can be provided to customize the persistance of bookmark data (e.g. in a Core Data database).
+ Default: nil (Default uses the AppSandboxFileAccessPersist class.)
+ */
+@property (nonatomic, weak) id <AppSandboxFileAccessProtocol> bookmarkPersistanceDelegate;
 
 /*! @brief Create the object with the default values. */
 + (AppSandboxFileAccess *)fileAccess;
