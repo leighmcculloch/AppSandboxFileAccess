@@ -639,6 +639,7 @@
 				C212FF001A7E944E00BE3532 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
