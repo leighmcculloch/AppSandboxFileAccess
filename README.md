@@ -7,6 +7,7 @@ This is specifically useful for when you need to write files, or gain access to 
 
 When using this class, if the user needs to give permission to access the folder, the NSOpenPanel is used to request permission. Only the path or file requiring permission, or parent paths are selectable in the NSOpenPanel. The panel text, title and button are customisable.
 ![](screenshot-1.png)
+
 Uses in the Real World
 ====================
 
