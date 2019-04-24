@@ -51,7 +51,7 @@
 #pragma mark -
 #pragma mark AppSandboxFileAccess
 
-typedef void (^AppSandboxFileAccessBlock)();
+typedef void (^AppSandboxFileAccessBlock)(void);
 typedef void (^AppSandboxFileSecurityScopeBlock)(NSURL *securityScopedFileURL, NSData *bookmarkData);
 
 @interface AppSandboxFileAccess : NSObject
