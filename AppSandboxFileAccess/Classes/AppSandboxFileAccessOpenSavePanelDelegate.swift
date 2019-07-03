@@ -1,5 +1,5 @@
-//
-//  AppSandboxFileAccessPersist.h
+
+//  AppSandboxFileAccessOpenSavePanelDelegate.m
 //  AppSandboxFileAccess
 //
 //  Created by Leigh McCulloch on 23/11/2013.
@@ -33,13 +33,39 @@
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <Foundation/Foundation.h>
-#import "AppSandboxFileAccess.h"
+class AppSandboxFileAccessOpenSavePanelDelegate: NSObject, NSOpenSavePanelDelegate {
+    private var pathComponents: [Any] = []
+    
+    init(fileURL: URL) {
+        super.init()
 
-@interface AppSandboxFileAccessPersist : NSObject <AppSandboxFileAccessProtocol>
+        pathComponents = fileURL.pathComponents
+    }
+    
+    
+    
+    // MARK: -- NSOpenSavePanelDelegate
+    func panel(_ sender: Any, shouldEnable url: URL) -> Bool {
 
-- (NSData *)bookmarkDataForURL:(NSURL *)url;
-- (void)setBookmarkData:(NSData *)data forURL:(NSURL *)url;
-- (void)clearBookmarkDataForURL:(NSURL *)url;
-
-@end
+        let pathComponents = self.pathComponents
+        let otherPathComponents = url.pathComponents
+        
+        // if the url passed in has more components, it could not be a parent path or a exact same path
+        if (otherPathComponents.count) > pathComponents.count {
+            return false
+        }
+        
+        // check that each path component in url, is the same as each corresponding component in self.url
+        for i in 0..<(otherPathComponents.count) {
+            let comp1 = otherPathComponents[i]
+            let comp2 = pathComponents[i] as? String
+            // not the same, therefore url is not a parent or exact match to self.url
+            if !(comp1 == comp2) {
+                return false
+            }
+        }
+        
+        // there were no mismatches (or no components meaning url is root)
+        return true
+    }
+}
