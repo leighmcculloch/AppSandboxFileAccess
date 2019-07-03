@@ -42,7 +42,7 @@ class AppSandboxFileAccessPersist: AppSandboxFileAccessProtocol {
         while (subURL.path.count) > 1 {
             // give up when only '/' is left in the path
             let key = AppSandboxFileAccessPersist.keyForBookmarkData(for: subURL)
-            let bookmark = defaults.data(forKey: key ?? "")
+            let bookmark = defaults.data(forKey: key)
             if bookmark != nil {
                 // if a bookmark is found, return it
                 return bookmark
@@ -54,20 +54,20 @@ class AppSandboxFileAccessPersist: AppSandboxFileAccessProtocol {
         return nil
     }
     
-    func setBookmarkData(_ data: Data?, for url: URL?) {
+    func setBookmarkData(_ data: Data?, for url: URL) {
         let defaults = UserDefaults.standard
         let key = AppSandboxFileAccessPersist.keyForBookmarkData(for: url)
-        defaults.set(data, forKey: key ?? "")
+        defaults.set(data, forKey: key)
     }
     
     func clearBookmarkData(for url: URL) {
         let defaults = UserDefaults.standard
         let key = AppSandboxFileAccessPersist.keyForBookmarkData(for: url)
-        defaults.removeObject(forKey: key ?? "")
+        defaults.removeObject(forKey: key)
     }
     
-    class func keyForBookmarkData(for url: URL?) -> String? {
-        let urlStr = url?.absoluteString
-        return String(format: "bd_%1$@", urlStr ?? "")
+    class func keyForBookmarkData(for url: URL) -> String {
+        let urlStr = url.absoluteString
+        return String(format: "bd_%1$@", urlStr)
     }
 }

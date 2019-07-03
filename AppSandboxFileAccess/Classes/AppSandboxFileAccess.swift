@@ -3,7 +3,7 @@ public typealias AppSandboxFileSecurityScopeBlock = (URL?, Data?) -> Void
 
 protocol AppSandboxFileAccessProtocol: class {
     func bookmarkData(for url: URL) -> Data?
-    func setBookmarkData(_ data: Data?, for url: URL?)
+    func setBookmarkData(_ data: Data?, for url: URL)
     func clearBookmarkData(for url: URL)
 }
 
@@ -146,12 +146,7 @@ open class AppSandboxFileAccess {
      @param block The block that will be given access to the file or folder.
      @return YES if permission was granted or already available, NO otherwise.
      */
-    func requestPermissions(forFileURL fileURL: URL?, persistPermission persist: Bool, with block: AppSandboxFileSecurityScopeBlock) -> Bool {
-        assert(fileURL != nil, "Invalid parameter not satisfying: fileURL != nil")
-        
-        guard let fileURL = fileURL else {
-            return false
-        }
+    func requestPermissions(forFileURL fileURL: URL, persistPermission persist: Bool, with block: AppSandboxFileSecurityScopeBlock) -> Bool {
         
         var allowedURL: URL? = nil
         
@@ -172,7 +167,7 @@ open class AppSandboxFileAccess {
                 bookmarkData = nil
                 bookmarkPersistanceDelegate?.clearBookmarkData(for: standardisedFileURL)
                 if allowedURL != nil {
-                    bookmarkData = persistPermissionURL(allowedURL)
+                    bookmarkData = persistPermissionURL(allowedURL!)
                     if bookmarkData == nil {
                         allowedURL = nil
                     }
@@ -183,19 +178,20 @@ open class AppSandboxFileAccess {
         // if allowed url is nil, we need to ask the user for permission
         if allowedURL == nil {
             allowedURL = askPermission(for: standardisedFileURL)
-            if allowedURL == nil {
-                // if the user did not give permission, exit out here
-                return false
-            }
+        }
+        
+        // if the user did not give permission, exit out here
+        guard let confirmedAllowedURL = allowedURL else {
+            return false
         }
         
         // if we have no bookmark data and we want to persist, we need to create it
         if persist && bookmarkData == nil {
-            bookmarkData = persistPermissionURL(allowedURL)
+            bookmarkData = persistPermissionURL(confirmedAllowedURL)
         }
         
         //if block
-        block(allowedURL, bookmarkData)
+        block(confirmedAllowedURL, bookmarkData)
         
         return true
     }
@@ -224,13 +220,12 @@ open class AppSandboxFileAccess {
      @param url The URL with permission that will be persisted.
      @return Bookmark data if permission was granted or already available, nil otherwise.
      */
-    func persistPermissionURL(_ url: URL?) -> Data? {
-        assert(url != nil, "Invalid parameter not satisfying: url != nil")
-        
+    func persistPermissionURL(_ url: URL) -> Data? {
+       
         // store the sandbox permissions
         var bookmarkData: Data? = nil
         do {
-            bookmarkData = try url?.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+            bookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
         } catch {
         }
         if bookmarkData != nil {
