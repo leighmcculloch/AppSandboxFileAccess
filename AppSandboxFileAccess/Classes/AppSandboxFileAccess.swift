@@ -1,14 +1,12 @@
 public typealias AppSandboxFileAccessBlock = () -> Void
 public typealias AppSandboxFileSecurityScopeBlock = (URL?, Data?) -> Void
 
-protocol AppSandboxFileAccessProtocol: class {
+
+public protocol AppSandboxFileAccessProtocol: class {
     func bookmarkData(for url: URL) -> Data?
     func setBookmarkData(_ data: Data?, for url: URL)
     func clearBookmarkData(for url: URL)
 }
-
-let CFBundleDisplayName = "CFBundleDisplayName"
-let CFBundleName = "CFBundleName"
 
 
 extension Bundle {
@@ -42,17 +40,15 @@ open class AppSandboxFileAccess {
     /// The prompt button on the the NSOpenPanel displayed when asking permission to access a file.
     open var prompt:String = {NSLocalizedString("Allow", comment: "Sandbox Access panel prompt.")}()
 
-    /// This is an optional delegate object that can be provided to customize the persistance of bookmark data (e.g. in a Core Data database).
-    private var defaultDelegate: AppSandboxFileAccessPersist = AppSandboxFileAccessPersist()
     
-    private weak var _bookmarkPersistanceDelegate: AppSandboxFileAccessProtocol?
-    weak var bookmarkPersistanceDelegate: AppSandboxFileAccessProtocol? {
-        get {
-            return _bookmarkPersistanceDelegate ?? defaultDelegate
-        }
-        set(bookmarkPersistanceDelegate) {
-            _bookmarkPersistanceDelegate = bookmarkPersistanceDelegate
-        }
+    
+    
+    /// This is an optional delegate object that can be provided to customize the persistance of bookmark data (e.g. in a Core Data database).
+    public weak var bookmarkPersistanceDelegate: AppSandboxFileAccessProtocol?
+    
+    private var defaultDelegate: AppSandboxFileAccessProtocol = AppSandboxFileAccessPersist()
+    private var bookmarkPersistanceDelegateOrDefault:AppSandboxFileAccessProtocol {
+        return bookmarkPersistanceDelegate ?? defaultDelegate
     }
     
     public init() {
@@ -114,6 +110,37 @@ open class AppSandboxFileAccess {
     }
     
 
+    func allowedURLAndBookmarkData(forFileURL fileURL:URL) -> (URL?,Data?) {
+        
+        var allowedURL: URL? = nil
+        
+        // standardize the file url and remove any symlinks so that the url we lookup in bookmark data would match a url given by the askPermissionForURL method
+        let standardisedFileURL = fileURL.standardizedFileURL.resolvingSymlinksInPath()
+        
+        // lookup bookmark data for this url, this will automatically load bookmark data for a parent path if we have it
+        var bookmarkData:Data? = bookmarkPersistanceDelegateOrDefault.bookmarkData(for: standardisedFileURL)
+        if let concreteData = bookmarkData {
+            // resolve the bookmark data into an NSURL object that will allow us to use the file
+            var bookmarkDataIsStale: Bool = false
+            do {
+                allowedURL = try URL.init(resolvingBookmarkData:concreteData, options: [.withSecurityScope, .withoutUI], relativeTo: nil, bookmarkDataIsStale: &bookmarkDataIsStale)
+            } catch {
+            }
+            // if the bookmark data is stale we'll attempt to recreate it with the existing url object if possible (not guaranteed)
+            if bookmarkDataIsStale {
+                bookmarkData = nil
+                bookmarkPersistanceDelegateOrDefault.clearBookmarkData(for: standardisedFileURL)
+                if allowedURL != nil {
+                    bookmarkData = persistPermissionURL(allowedURL!)
+                    if bookmarkData == nil {
+                        allowedURL = nil
+                    }
+                }
+            }
+        }
+        
+        return (allowedURL,bookmarkData)
+    }
     
     /// Request access permission for a file path to read or write, automatically with NSOpenPanel if required and using persisted permissions if possible.
     
@@ -140,33 +167,11 @@ open class AppSandboxFileAccess {
     ///   - block: The block that will be given access to the file or folder.
     /// - Returns: YES if permission was granted or already available, NO otherwise.
     func requestPermissions(forFileURL fileURL: URL, askIfNecessary:Bool = true, persistPermission persist: Bool, with block: AppSandboxFileSecurityScopeBlock? = nil) -> Bool {
-        
-        var allowedURL: URL? = nil
-        
+
         // standardize the file url and remove any symlinks so that the url we lookup in bookmark data would match a url given by the askPermissionForURL method
         let standardisedFileURL = fileURL.standardizedFileURL.resolvingSymlinksInPath()
         
-        // lookup bookmark data for this url, this will automatically load bookmark data for a parent path if we have it
-        var bookmarkData:Data? = bookmarkPersistanceDelegate?.bookmarkData(for: standardisedFileURL)
-        if let concreteData = bookmarkData {
-            // resolve the bookmark data into an NSURL object that will allow us to use the file
-            var bookmarkDataIsStale: Bool = false
-            do {
-                allowedURL = try URL.init(resolvingBookmarkData:concreteData, options: [.withSecurityScope, .withoutUI], relativeTo: nil, bookmarkDataIsStale: &bookmarkDataIsStale)
-            } catch {
-            }
-            // if the bookmark data is stale we'll attempt to recreate it with the existing url object if possible (not guaranteed)
-            if bookmarkDataIsStale {
-                bookmarkData = nil
-                bookmarkPersistanceDelegate?.clearBookmarkData(for: standardisedFileURL)
-                if allowedURL != nil {
-                    bookmarkData = persistPermissionURL(allowedURL!)
-                    if bookmarkData == nil {
-                        allowedURL = nil
-                    }
-                }
-            }
-        }
+        var (allowedURL,bookmarkData) = allowedURLAndBookmarkData(forFileURL:standardisedFileURL)
         
         // if allowed url is nil, we need to ask the user for permission
         if allowedURL == nil && askIfNecessary == true {
@@ -179,7 +184,7 @@ open class AppSandboxFileAccess {
         }
         
         // if we have no bookmark data and we want to persist, we need to create it
-        if persist && bookmarkData == nil {
+        if persist == true && bookmarkData == nil {
             bookmarkData = persistPermissionURL(confirmedAllowedURL)
         }
         
@@ -219,53 +224,58 @@ open class AppSandboxFileAccess {
         } catch {
         }
         if bookmarkData != nil {
-            bookmarkPersistanceDelegate?.setBookmarkData(bookmarkData, for: url)
+            bookmarkPersistanceDelegateOrDefault.setBookmarkData(bookmarkData, for: url)
         }
         return bookmarkData
     }
     
+    private func existingUrlOrParent(for url:URL) -> URL {
+        let fileManager = FileManager.default
+        var path = url.path
+        while (path.count) > 1 {
+            // give up when only '/' is left in the path or if we get to a path that exists
+            if fileManager.fileExists(atPath: path){
+                break
+            }
+            path = URL(fileURLWithPath: path).deletingLastPathComponent().path
+        }
+        let existingURL = URL(fileURLWithPath: path)
+        return existingURL
+    }
     
-    
-    func askPermission(for url: URL?) -> URL? {
-        var url = url
-        assert(url != nil, "Invalid parameter not satisfying: url != nil")
+    private func openPanel(for url:URL) -> NSOpenPanel {
+        // create delegate that will limit which files in the open panel can be selected, to ensure only a folder
+        // or file giving permission to the file requested can be selected
+        let openPanelDelegate = AppSandboxFileAccessOpenSavePanelDelegate(fileURL: url)
         
+        let existingURL = existingUrlOrParent(for: url)
+        
+        let openPanel = NSOpenPanel()
+        openPanel.message = self.message
+        openPanel.canCreateDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.canChooseDirectories = true
+        openPanel.allowsMultipleSelection = false
+        openPanel.prompt = self.prompt
+        openPanel.title = self.title
+        openPanel.showsHiddenFiles = false
+        openPanel.isExtensionHidden = false
+        openPanel.directoryURL = existingURL
+        openPanel.delegate = openPanelDelegate
+        
+        return openPanel
+    }
+    
+    private func askPermission(for url: URL) -> URL? {
+        let requestedURL = url
+ 
         // this url will be the url allowed, it might be a parent url of the url passed in
         var allowedURL: URL? = nil
         
-        // create delegate that will limit which files in the open panel can be selected, to ensure only a folder
-        // or file giving permission to the file requested can be selected
-        var openPanelDelegate: AppSandboxFileAccessOpenSavePanelDelegate? = nil
-        if let url = url {
-            openPanelDelegate = AppSandboxFileAccessOpenSavePanelDelegate(fileURL: url)
-        }
-        
-        // check that the url exists, if it doesn't, find the parent path of the url that does exist and ask permission for that
-        let fileManager = FileManager.default
-        var path = url?.path
-        while (path?.count ?? 0) > 1 {
-            // give up when only '/' is left in the path or if we get to a path that exists
-            if fileManager.fileExists(atPath: path ?? "", isDirectory: nil) {
-                break
-            }
-            path = URL(fileURLWithPath: path ?? "").deletingLastPathComponent().absoluteString
-        }
-        url = URL(fileURLWithPath: path ?? "")
-        
         // display the open panel
         let displayOpenPanelBlock = {
-            let openPanel = NSOpenPanel()
-            openPanel.message = self.message
-            openPanel.canCreateDirectories = false
-            openPanel.canChooseFiles = true
-            openPanel.canChooseDirectories = true
-            openPanel.allowsMultipleSelection = false
-            openPanel.prompt = self.prompt
-            openPanel.title = self.title
-            openPanel.showsHiddenFiles = false
-            openPanel.isExtensionHidden = false
-            openPanel.directoryURL = url
-            openPanel.delegate = openPanelDelegate
+            let openPanel = self.openPanel(for: requestedURL)
+            
             NSApplication.shared.activate(ignoringOtherApps: true)
             let openPanelButtonPressed = openPanel.runModal().rawValue
             if openPanelButtonPressed == NSFileHandlingPanelOKButton {
