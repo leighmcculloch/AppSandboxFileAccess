@@ -32,9 +32,9 @@
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-class AppSandboxFileAccessPersist: AppSandboxFileAccessProtocol {
+public class AppSandboxFileAccessPersist: AppSandboxFileAccessProtocol {
     
-    func bookmarkData(for url: URL) -> Data? {
+    public func bookmarkData(for url: URL) -> Data? {
         let defaults = UserDefaults.standard
         
         // loop through the bookmarks one path at a time down the URL
@@ -54,13 +54,13 @@ class AppSandboxFileAccessPersist: AppSandboxFileAccessProtocol {
         return nil
     }
     
-    func setBookmarkData(_ data: Data?, for url: URL) {
+    public func setBookmarkData(_ data: Data?, for url: URL) {
         let defaults = UserDefaults.standard
         let key = AppSandboxFileAccessPersist.keyForBookmarkData(for: url)
         defaults.set(data, forKey: key)
     }
     
-    func clearBookmarkData(for url: URL) {
+    public func clearBookmarkData(for url: URL) {
         let defaults = UserDefaults.standard
         let key = AppSandboxFileAccessPersist.keyForBookmarkData(for: url)
         defaults.removeObject(forKey: key)
@@ -69,5 +69,16 @@ class AppSandboxFileAccessPersist: AppSandboxFileAccessProtocol {
     class func keyForBookmarkData(for url: URL) -> String {
         let urlStr = url.absoluteString
         return String(format: "bd_%1$@", urlStr)
+    }
+    
+    /// Handy dev/debugging option
+    public class func deleteAllBookmarkData() {
+        let allDefaults = UserDefaults.standard.dictionaryRepresentation()
+        
+        for key in allDefaults.keys {
+            if key.hasPrefix("bd_") {
+                UserDefaults.standard.removeObject(forKey: key)
+            }
+        }
     }
 }
