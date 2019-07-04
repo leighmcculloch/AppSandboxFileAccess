@@ -102,45 +102,14 @@ open class AppSandboxFileAccess {
     ///   - persist: If YES will save the permission for future calls.
     ///   - block: block is called if permission is allowed
     /// - Returns: YES if permission was granted or already available, NO otherwise.
-    func requestPermissions(forFilePath filePath: String?, askIfNecessary:Bool = true, persistPermission persist: Bool, with block: AppSandboxFileSecurityScopeBlock? = nil) -> Bool {
-        assert(filePath != nil, "Invalid parameter not satisfying: filePath != nil")
+    func requestPermissions(forFilePath filePath: String, askIfNecessary:Bool = true, persistPermission persist: Bool, with block: AppSandboxFileSecurityScopeBlock? = nil) -> Bool {
         
-        let fileURL = URL(fileURLWithPath: filePath ?? "")
+        let fileURL = URL(fileURLWithPath: filePath)
         return requestPermissions(forFileURL: fileURL, askIfNecessary:askIfNecessary, persistPermission: persist, with: block)
     }
     
 
-    func allowedURLAndBookmarkData(forFileURL fileURL:URL) -> (URL?,Data?) {
-        
-        var allowedURL: URL? = nil
-        
-        // standardize the file url and remove any symlinks so that the url we lookup in bookmark data would match a url given by the askPermissionForURL method
-        let standardisedFileURL = fileURL.standardizedFileURL.resolvingSymlinksInPath()
-        
-        // lookup bookmark data for this url, this will automatically load bookmark data for a parent path if we have it
-        var bookmarkData:Data? = bookmarkPersistanceDelegateOrDefault.bookmarkData(for: standardisedFileURL)
-        if let concreteData = bookmarkData {
-            // resolve the bookmark data into an NSURL object that will allow us to use the file
-            var bookmarkDataIsStale: Bool = false
-            do {
-                allowedURL = try URL.init(resolvingBookmarkData:concreteData, options: [.withSecurityScope, .withoutUI], relativeTo: nil, bookmarkDataIsStale: &bookmarkDataIsStale)
-            } catch {
-            }
-            // if the bookmark data is stale we'll attempt to recreate it with the existing url object if possible (not guaranteed)
-            if bookmarkDataIsStale {
-                bookmarkData = nil
-                bookmarkPersistanceDelegateOrDefault.clearBookmarkData(for: standardisedFileURL)
-                if allowedURL != nil {
-                    bookmarkData = persistPermissionURL(allowedURL!)
-                    if bookmarkData == nil {
-                        allowedURL = nil
-                    }
-                }
-            }
-        }
-        
-        return (allowedURL,bookmarkData)
-    }
+
     
     /// Request access permission for a file path to read or write, automatically with NSOpenPanel if required and using persisted permissions if possible.
     
@@ -194,15 +163,47 @@ open class AppSandboxFileAccess {
         return true
     }
     
+    
+    /// Request permission for file - but if user is asked, then present file panel as sheet
+    ///
+    /// - Parameters:
+    ///   - fileURL: required URL
+    ///   - fromWindow: window to present sheet on
+    ///   - persist: whether to persist the permission
+    ///   - block: block called with url and bookmark data if available
+    func requestPermissions(forFileURL fileURL: URL, fromWindow:NSWindow, persistPermission persist: Bool, with block: @escaping AppSandboxFileSecurityScopeBlock) {
+        
+        // standardize the file url and remove any symlinks so that the url we lookup in bookmark data would match a url given by the askPermissionForURL method
+        let standardisedFileURL = fileURL.standardizedFileURL.resolvingSymlinksInPath()
+        
+        let (allowedURL,bookmarkData) = allowedURLAndBookmarkData(forFileURL:standardisedFileURL)
+        
+        // if url is stored, then we'll get a url and bookmark data. We can exit here.
+        if let storedURL = allowedURL {
+            block(storedURL,bookmarkData)
+            return
+        }
+        
+        // we need to ask the user for permission
+        askPermission(for: standardisedFileURL, fromWindow: fromWindow) { (url) in
+            var bookmarkData: Data? = nil
+            // if we have no bookmark data and we want to persist, we need to create it
+            if let url = url, persist == true {
+                bookmarkData = self.persistPermissionURL(url)
+            }
+            
+            block(url, bookmarkData)
+        }
+    }
+    
 
     /// Persist a security bookmark for the given path. The calling application must already have permission.
     ///
     /// - Parameter path: The path with permission that will be persisted.
     /// - Returns: Bookmark data if permission was granted or already available, nil otherwise.
-    func persistPermissionPath(_ path: String?) -> Data? {
-        assert(path != nil, "Invalid parameter not satisfying: path != nil")
-        
-        return persistPermissionURL(URL(fileURLWithPath: path ?? ""))
+    func persistPermissionPath(_ path: String) -> Data? {
+
+        return persistPermissionURL(URL(fileURLWithPath: path))
     }
     
 
@@ -227,6 +228,40 @@ open class AppSandboxFileAccess {
             bookmarkPersistanceDelegateOrDefault.setBookmarkData(bookmarkData, for: url)
         }
         return bookmarkData
+    }
+    
+    //MARK: Utility methods
+    
+    private func allowedURLAndBookmarkData(forFileURL fileURL:URL) -> (URL?,Data?) {
+        
+        var allowedURL: URL? = nil
+        
+        // standardize the file url and remove any symlinks so that the url we lookup in bookmark data would match a url given by the askPermissionForURL method
+        let standardisedFileURL = fileURL.standardizedFileURL.resolvingSymlinksInPath()
+        
+        // lookup bookmark data for this url, this will automatically load bookmark data for a parent path if we have it
+        var bookmarkData:Data? = bookmarkPersistanceDelegateOrDefault.bookmarkData(for: standardisedFileURL)
+        if let concreteData = bookmarkData {
+            // resolve the bookmark data into an NSURL object that will allow us to use the file
+            var bookmarkDataIsStale: Bool = false
+            do {
+                allowedURL = try URL.init(resolvingBookmarkData:concreteData, options: [.withSecurityScope, .withoutUI], relativeTo: nil, bookmarkDataIsStale: &bookmarkDataIsStale)
+            } catch {
+            }
+            // if the bookmark data is stale we'll attempt to recreate it with the existing url object if possible (not guaranteed)
+            if bookmarkDataIsStale {
+                bookmarkData = nil
+                bookmarkPersistanceDelegateOrDefault.clearBookmarkData(for: standardisedFileURL)
+                if allowedURL != nil {
+                    bookmarkData = persistPermissionURL(allowedURL!)
+                    if bookmarkData == nil {
+                        allowedURL = nil
+                    }
+                }
+            }
+        }
+        
+        return (allowedURL,bookmarkData)
     }
     
     private func existingUrlOrParent(for url:URL) -> URL {
@@ -289,6 +324,36 @@ open class AppSandboxFileAccess {
         }
         
         return allowedURL
+    }
+    
+    private func askPermission(for url: URL, fromWindow:NSWindow, with block: @escaping (URL?)->Void) {
+        let requestedURL = url
+        
+        // this url will be the url allowed, it might be a parent url of the url passed in
+        var allowedURL: URL? = nil
+        
+        // display the open panel
+        let displayOpenPanelBlock = {
+            let openPanel = self.openPanel(for: requestedURL)
+            
+            NSApplication.shared.activate(ignoringOtherApps: true)
+            
+            openPanel.beginSheet(fromWindow, completionHandler: { (result) in
+                if result == NSApplication.ModalResponse.OK {
+                    block(openPanel.url)
+                }
+                else {
+                    block(nil)
+                }
+            })
+
+        }
+        if Thread.isMainThread {
+            displayOpenPanelBlock()
+        } else {
+            DispatchQueue.main.sync(execute: displayOpenPanelBlock)
+        }
+
     }
 }
 
