@@ -63,8 +63,9 @@ open class AppSandboxFileAccess {
     ///   - persist: persist If YES will save the permission for future calls.
     ///   - block: The block that will be given access to the file or folder.
     /// - Returns: true if permission was granted or already available, false otherwise.
-    public func accessFilePath(_ path: String?, askIfNecessary:Bool = true, persistPermission persist: Bool, with block: AppSandboxFileAccessBlock? = nil) -> Bool {
-        return accessFileURL(URL(fileURLWithPath: path ?? ""), askIfNecessary:askIfNecessary, persistPermission: persist, with: block)
+    public func accessFilePath(_ filePath: String, askIfNecessary:Bool = true, persistPermission persist: Bool, with block: AppSandboxFileAccessBlock? = nil) -> Bool {
+        let fileURL = URL(fileURLWithPath: filePath)
+        return accessFileURL(fileURL, askIfNecessary:askIfNecessary, persistPermission: persist, with: block)
     }
     
 
@@ -90,6 +91,41 @@ open class AppSandboxFileAccess {
         })
         
         return success
+    }
+    
+    /// Similar to accessFileURL - but if permission is required, the open panel is presented as a sheet on fromWindow
+    ///
+    /// - Parameters:
+    ///   - filePath: path A file path, either a file or folder, that the caller needs access to.
+    ///   - fromWindow: The window from which to present the sheet
+    ///   - persist: persist If YES will save the permission for future calls.
+    ///   - block: The block that will be given access to the file or folder.
+    public func accessFilePath(_ filePath: String,fromWindow:NSWindow, persistPermission persist: Bool, with block:AppSandboxFileAccessBlock? = nil) {
+        
+        let fileURL = URL(fileURLWithPath: filePath)
+        accessFileURL(fileURL, fromWindow: fromWindow, persistPermission: persist, with: block)
+    }
+    
+    /// Similar to accessFileURL - but if permission is required, the open panel is presented as a sheet on fromWindow
+    ///
+    /// - Parameters:
+    ///   - fileURL: A file URL, either a file or folder, that the caller needs access to.
+    ///   - fromWindow: The window from which to present the sheet
+    ///   - persist: persist If YES will save the permission for future calls.
+    ///   - block: The block that will be given access to the file or folder.
+    public func accessFileURL(_ fileURL: URL,fromWindow:NSWindow, persistPermission persist: Bool, with block:AppSandboxFileAccessBlock? = nil) {
+        
+        requestPermissions(forFileURL: fileURL, fromWindow: fromWindow, persistPermission: persist) { (securityScopedFileURL, bookmarkData) in
+            
+            guard let securityScopedFileURL = securityScopedFileURL else {
+                return
+            }
+            
+            if (securityScopedFileURL.startAccessingSecurityScopedResource() == true) {
+                block?()
+                securityScopedFileURL.stopAccessingSecurityScopedResource()
+            }
+        }
     }
     
 
@@ -161,6 +197,19 @@ open class AppSandboxFileAccess {
         block?(confirmedAllowedURL, bookmarkData)
         
         return true
+    }
+    
+    /// Request permission for file - but if user is asked, then present file panel as sheet
+    ///
+    /// - Parameters:
+    ///   - fileURL: required URL
+    ///   - fromWindow: window to present sheet on
+    ///   - persist: whether to persist the permission
+    ///   - block: block called with url and bookmark data if available
+    func requestPermissions(forFilePath filePath: String, fromWindow:NSWindow, persistPermission persist: Bool, with block: @escaping AppSandboxFileSecurityScopeBlock) {
+        
+        let fileURL = URL(fileURLWithPath: filePath)
+        requestPermissions(forFileURL: fileURL, fromWindow: fromWindow, persistPermission: persist, with: block)
     }
     
     
@@ -278,7 +327,7 @@ open class AppSandboxFileAccess {
         return existingURL
     }
     
-    private func openPanel(for url:URL) -> NSOpenPanel {
+    private func openPanel(for url:URL) -> (NSOpenPanel,NSOpenSavePanelDelegate) {
         // create delegate that will limit which files in the open panel can be selected, to ensure only a folder
         // or file giving permission to the file requested can be selected
         let openPanelDelegate = AppSandboxFileAccessOpenSavePanelDelegate(fileURL: url)
@@ -298,7 +347,7 @@ open class AppSandboxFileAccess {
         openPanel.directoryURL = existingURL
         openPanel.delegate = openPanelDelegate
         
-        return openPanel
+        return (openPanel,openPanelDelegate)
     }
     
     private func askPermission(for url: URL) -> URL? {
@@ -309,13 +358,16 @@ open class AppSandboxFileAccess {
         
         // display the open panel
         let displayOpenPanelBlock = {
-            let openPanel = self.openPanel(for: requestedURL)
+            let (openPanel,openPanelDelegate) = self.openPanel(for: requestedURL)
             
             NSApplication.shared.activate(ignoringOtherApps: true)
             let openPanelButtonPressed = openPanel.runModal().rawValue
             if openPanelButtonPressed == NSFileHandlingPanelOKButton {
                 allowedURL = openPanel.url
             }
+            
+            //use anonymous assignment to ensure that openPanelDelegate is retained
+            _ = openPanelDelegate
         }
         if Thread.isMainThread {
             displayOpenPanelBlock()
@@ -326,26 +378,27 @@ open class AppSandboxFileAccess {
         return allowedURL
     }
     
+
     private func askPermission(for url: URL, fromWindow:NSWindow, with block: @escaping (URL?)->Void) {
         let requestedURL = url
         
-        // this url will be the url allowed, it might be a parent url of the url passed in
-        var allowedURL: URL? = nil
-        
         // display the open panel
         let displayOpenPanelBlock = {
-            let openPanel = self.openPanel(for: requestedURL)
-            
+            let (openPanel,openPanelDelegate) = self.openPanel(for: requestedURL)
+     
             NSApplication.shared.activate(ignoringOtherApps: true)
             
-            openPanel.beginSheet(fromWindow, completionHandler: { (result) in
+            openPanel.beginSheetModal(for:fromWindow) { (result) in
                 if result == NSApplication.ModalResponse.OK {
                     block(openPanel.url)
                 }
                 else {
                     block(nil)
                 }
-            })
+                
+                //use anonymous assignment to ensure that openPanelDelegate is retained
+                _ = openPanelDelegate
+            }
 
         }
         if Thread.isMainThread {
